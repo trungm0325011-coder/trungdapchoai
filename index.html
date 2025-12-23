@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <img src="avatar.jpg" alt="Trung avatar" class="avatar">
   <title>Trần Quốc Trung — Portfolio</title>
   <meta name="description" content="Website cá nhân của Trần Quốc Trung — Thú y, AI, và phát triển ứng dụng." />
 
@@ -25,18 +24,10 @@
       --shadow: 0 18px 50px rgba(0,0,0,.45);
       --radius: 18px;
     }
-.avatar{
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #f6c445;
-  box-shadow: 0 0 25px rgba(246,196,69,.35);
-  margin-bottom: 14px;
-}
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
+
     body{
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -54,6 +45,18 @@
       width:min(1050px, 92vw);
       margin: 0 auto;
       padding: 28px 0 80px;
+    }
+
+    /* Avatar (mặc định: lớn cho hero nếu bạn dùng sau này) */
+    .avatar{
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #f6c445;
+      box-shadow: 0 0 25px rgba(246,196,69,.35);
+      margin-bottom: 14px;
+      display:block;
     }
 
     /* Topbar */
@@ -78,7 +81,10 @@
       display:flex; align-items:center; gap:12px;
       font-weight:700;
       letter-spacing:.2px;
+      min-width: 220px;
     }
+
+    /* Logo khung (giữ lại để style chung) */
     .logo{
       width:38px; height:38px; border-radius:12px;
       background: linear-gradient(135deg, rgba(230,69,69,.95), rgba(246,196,69,.95));
@@ -87,17 +93,30 @@
       color:#111;
       font-weight:900;
     }
+
+    /* Avatar nhỏ trong Topbar (ghi đè avatar 110px) */
+    .logo.avatar{
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      margin: 0;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 10px 24px rgba(230,69,69,.18);
+    }
+
     .nav{
       display:flex; gap:18px; align-items:center;
       color: var(--muted);
       font-weight: 500;
       font-size: 14px;
+      white-space: nowrap;
     }
     .nav a{ padding:10px 10px; border-radius: 12px; }
     .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
 
     .cta{
       display:flex; gap:10px; align-items:center;
+      white-space: nowrap;
     }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -289,7 +308,8 @@
     @media (max-width: 900px){
       .hero{ grid-template-columns: 1fr; }
       .grid{ grid-template-columns: 1fr; }
-      .nav{ display:none; } /* nhỏ thì ẩn nav cho gọn */
+      .nav{ display:none; }
+      .brand{ min-width: unset; }
     }
   </style>
 </head>
@@ -299,7 +319,8 @@
   <div class="topbar">
     <div class="inner">
       <div class="brand">
-        <div class="logo">T</div>
+        <!-- AVATAR TOPBAR: file avatar.jpg đặt cùng cấp index.html -->
+        <img src="avatar.jpg" alt="Trung avatar" class="logo avatar">
         <div>
           <div style="font-size:14px;">Trần Quốc Trung</div>
           <div style="font-size:12px; color: var(--muted); font-weight:600;">Veterinary • AI • Apps</div>
@@ -314,7 +335,6 @@
       </div>
 
       <div class="cta">
-        <!-- Đổi link GitHub của bạn ở đây -->
         <a class="btn" href="https://github.com/trungm0325011-coder" target="_blank" rel="noopener">GitHub</a>
         <a class="btn primary" href="#contact">Contact</a>
       </div>
@@ -326,6 +346,7 @@
     <div class="hero">
       <div class="card hero-left">
         <div class="pill"><span class="dot"></span> Portfolio cá nhân</div>
+
         <h1>Trần Quốc Trung <span style="color: var(--brand);">(Trungdapchai)</span></h1>
         <p class="subtitle">
           Xin chào! Mình đang học Thạc sĩ Thú y tại Đại học Cần Thơ, quan tâm <b>AI trong thú y</b> và <b>phát triển ứng dụng</b>.
@@ -335,8 +356,10 @@
         <div class="hero-actions">
           <!-- Đổi email của bạn -->
           <a class="btn primary" href="mailto:you@example.com">✉️ Gửi Email</a>
-          <!-- Nếu chưa có CV thì để # -->
-          <a class="btn" href="#" onclick="alert('Bạn có thể upload CV.pdf lên repo rồi đổi link ở đây nhé!'); return false;">⬇️ Tải CV</a>
+
+          <!-- CV: upload file CV_Trung.pdf đặt cùng cấp index.html -->
+          <a class="btn" href="CV_Trung.pdf" target="_blank" rel="noopener">⬇️ Tải CV</a>
+
           <a class="btn" href="#projects">🚀 Xem dự án</a>
         </div>
       </div>
@@ -358,111 +381,4 @@
     </div>
 
     <!-- About -->
-    <section id="about" class="card section">
-      <div class="section-head">
-        <h2>Giới thiệu</h2>
-        <span>Ngắn gọn • rõ ràng • chuyên nghiệp</span>
-      </div>
-      <p style="margin:0; color: var(--muted); line-height:1.8;">
-        Mục tiêu của mình là kết hợp kiến thức <b>Thú y</b> và <b>Công nghệ</b> để tạo ra các giải pháp hữu ích:
-        quản lý phòng khám, hỗ trợ chẩn đoán, giáo dục chăm sóc thú cưng, và ứng dụng di động phục vụ cộng đồng.
-      </p>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="card section">
-      <div class="section-head">
-        <h2>Dự án nổi bật</h2>
-        <span>3 dự án tiêu biểu</span>
-      </div>
-
-      <div class="grid">
-        <div class="project">
-          <div class="tag">App</div>
-          <h3>MyDiaryApp</h3>
-          <p>Ứng dụng nhật ký song ngữ, có PIN bảo vệ, lưu trữ bài viết và trải nghiệm cá nhân.</p>
-          <div class="links">
-            <a class="link" href="#" onclick="alert('Bạn gắn link repo/demopage vào đây nhé!'); return false;">Repo</a>
-            <a class="link" href="#" onclick="alert('Nếu có demo online, bạn gắn link tại đây.'); return false;">Demo</a>
-          </div>
-        </div>
-
-        <div class="project">
-          <div class="tag">Social</div>
-          <h3>VinaSocial</h3>
-          <p>Mạng xã hội tích cực: đăng bài, tương tác, QR chia sẻ, ưu tiên nội dung giáo dục & du lịch.</p>
-          <div class="links">
-            <a class="link" href="#" onclick="alert('Bạn gắn link repo vào đây nhé!'); return false;">Repo</a>
-            <a class="link" href="#" onclick="alert('Bạn có thể tạo trang giới thiệu tính năng / landing page.'); return false;">Landing</a>
-          </div>
-        </div>
-
-        <div class="project">
-          <div class="tag">Pets</div>
-          <h3>PetWorld</h3>
-          <p>Thế giới thú cưng: chia sẻ kiến thức, chăm sóc chó mèo, và cộng đồng yêu thú cưng.</p>
-          <div class="links">
-            <a class="link" href="#" onclick="alert('Gắn link repo PetWorld ở đây.'); return false;">Repo</a>
-            <a class="link" href="#" onclick="alert('Có thể thêm mục blog/chia sẻ kiến thức thú y.'); return false;">Blog</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="card section">
-      <div class="section-head">
-        <h2>Kỹ năng</h2>
-        <span>Những gì bạn đang làm tốt</span>
-      </div>
-      <div class="grid">
-        <div class="project">
-          <h3>🐾 Thú y</h3>
-          <p>Kiến thức bệnh truyền nhiễm, chăm sóc thú cưng, thực hành và ứng dụng thực tế tại địa phương.</p>
-        </div>
-        <div class="project">
-          <h3>🤖 AI trong thú y</h3>
-          <p>Khám phá công cụ AI hỗ trợ chẩn đoán, quản lý dữ liệu bệnh án, tư vấn và triage.</p>
-        </div>
-        <div class="project">
-          <h3>📱 App development</h3>
-          <p>React Native/Expo (định hướng), UI/UX cơ bản, xây dựng sản phẩm theo từng tính năng.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="card section">
-      <div class="section-head">
-        <h2>Liên hệ</h2>
-        <span>Điền thông tin thật của bạn</span>
-      </div>
-
-      <div class="grid">
-        <div class="project">
-          <h3>📧 Email</h3>
-          <p><a class="link" href="mailto:you@example.com">you@example.com</a></p>
-        </div>
-        <div class="project">
-          <h3>🐙 GitHub</h3>
-          <p><a class="link" href="https://github.com/trungm0325011-coder" target="_blank" rel="noopener">github.com/trungm0325011-coder</a></p>
-        </div>
-        <div class="project">
-          <h3>🌐 Facebook / Zalo</h3>
-          <p><a class="link" href="#" onclick="alert('Dán link Facebook/Zalo của bạn vào đây'); return false;">Thêm link</a></p>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div>© <span id="y"></span> Trần Quốc Trung (Trungdapchai)</div>
-      <div style="opacity:.9;">Built with GitHub Pages</div>
-    </footer>
-  </main>
-
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
-
+    <section id="about" c
