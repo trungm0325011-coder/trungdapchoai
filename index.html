@@ -1,298 +1,290 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Trần Quốc Trung — Portfolio</title>
-<meta name="description" content="Portfolio cá nhân của Trần Quốc Trung: Thú y • AI • Ứng dụng." />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trần Quốc Trung — Academic & Professional Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* ==== GLOBAL STYLE (GIỮ NGUYÊN) ==== */
 :root{
   --bg:#070A10;
   --card:rgba(255,255,255,.06);
-  --card2:rgba(255,255,255,.08);
   --line:rgba(255,255,255,.12);
-  --text:rgba(255,255,255,.90);
+  --text:rgba(255,255,255,.92);
   --muted:rgba(255,255,255,.68);
   --brand:#F6C445;
   --brand2:#E64545;
-  --radius:18px;
-  --shadow:0 18px 55px rgba(0,0,0,.48);
 }
-
 *{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Inter,system-ui,sans-serif;
+  margin:0;font-family:Inter,system-ui,sans-serif;
   color:var(--text);
   background:
     radial-gradient(1100px 650px at 15% 0%, rgba(230,69,69,.20), transparent 60%),
     radial-gradient(900px 600px at 90% 10%, rgba(246,196,69,.16), transparent 55%),
     var(--bg);
 }
-
-a{color:inherit;text-decoration:none}
-.container{width:min(1120px,92vw);margin:auto;padding:24px 0 80px}
-
-/* ===== TOPBAR ===== */
-.topbar{
-  position:sticky;top:0;z-index:20;
-  backdrop-filter:blur(14px);
-  background:rgba(7,10,16,.6);
-  border-bottom:1px solid var(--line);
-}
-.topbar .inner{
-  width:min(1120px,92vw);margin:auto;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 0;
-}
-.brandbox{display:flex;gap:12px;align-items:center}
-.logo{
-  width:40px;height:40px;border-radius:14px;
-  background:linear-gradient(135deg,var(--brand2),var(--brand));
-  display:grid;place-items:center;
-  font-weight:900;color:#141414;
-}
-.brandtitle .name{font-weight:800;font-size:14px}
-.brandtitle .tag{font-size:12px;color:var(--muted)}
-
-.nav{display:flex;gap:10px;font-size:14px;color:var(--muted)}
-.nav a{padding:10px 12px;border-radius:12px}
-.nav a:hover{background:rgba(255,255,255,.06);color:#fff}
-
-.btn{
-  padding:10px 14px;border-radius:14px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.05);
-  font-weight:700;font-size:14px;
-}
-.btn.primary{
-  background:linear-gradient(135deg,var(--brand2),var(--brand));
-  color:#141414;border:none;
-}
-
-/* ===== CARD ===== */
-.card{
-  border:1px solid var(--line);
-  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-}
-
-/* ===== HERO ===== */
-.hero{
-  margin-top:22px;
-  display:grid;grid-template-columns:1.25fr .75fr;
-  gap:16px;
-}
-.heroLeft{padding:24px}
-.headrow{display:flex;gap:16px;align-items:center}
-.avatar{
-  width:96px;height:96px;border-radius:50%;
-  object-fit:cover;
-  border:3px solid var(--brand);
-  box-shadow:0 0 24px rgba(246,196,69,.35);
-}
-h1{margin:0;font-size:38px}
-.sub{color:var(--muted);line-height:1.8;font-size:15px}
-
-.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.badge{
-  padding:8px 10px;border-radius:999px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.04);
-  font-size:12px;font-weight:800;
-}
-
-.actions{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
-
-.heroRight{padding:16px;display:flex;flex-direction:column;gap:12px}
-.mini{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.04);
-  border-radius:16px;
-  padding:14px;
-}
-.mini .t{font-weight:800;font-size:14px;margin-bottom:6px}
-.mini p{margin:0;color:var(--muted);font-size:13.5px}
-
-/* ===== SECTION ===== */
-.section{margin-top:18px;padding:20px}
-.sectionHead{display:flex;justify-content:space-between;margin-bottom:12px}
-.sectionHead h2{margin:0;font-size:18px}
-.sectionHead span{font-size:13px;color:var(--muted)}
-
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.item{
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.04);
-  border-radius:16px;
-  padding:16px;
-}
-.item h3{margin:0 0 8px}
-.item p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.65}
-
-.chip{
-  display:inline-block;margin-top:10px;
-  padding:8px 10px;border-radius:12px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.03);
-  font-size:13px;font-weight:700;
-}
-
-/* ===== QR ===== */
-.qr{text-align:center;margin-top:24px}
-#qrcode{display:inline-block;padding:16px;background:#fff;border-radius:18px}
-
-/* ===== FOOTER ===== */
-footer{
-  margin-top:24px;padding-top:16px;
-  border-top:1px solid rgba(255,255,255,.1);
-  display:flex;justify-content:space-between;
-  font-size:13px;color:var(--muted);
-}
-
-@media(max-width:900px){
-  .nav{display:none}
-  .hero{grid-template-columns:1fr}
-  .grid{grid-template-columns:1fr}
-}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92vw);margin:auto;padding:28px 0 90px}
+.card{border:1px solid var(--line);background:rgba(255,255,255,.05);border-radius:18px;padding:28px;margin-top:18px}
+h1,h2,h3{letter-spacing:-.4px}
+.sub{color:var(--muted);line-height:1.85;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.item{border:1px solid var(--line);border-radius:16px;padding:16px;background:rgba(255,255,255,.04)}
+.badge{padding:8px 10px;border-radius:999px;border:1px solid var(--line);font-size:12px;font-weight:800}
+.btn{padding:10px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.06);font-weight:700}
+.btn.primary{background:linear-gradient(135deg,var(--brand2),var(--brand));color:#151515;border:none}
+.avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--brand)}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);color:var(--muted);font-size:13px}
 </style>
 </head>
 
 <body>
-
-<div class="topbar">
-  <div class="inner">
-    <div class="brandbox">
-      <div class="logo">T</div>
-      <div class="brandtitle">
-        <div class="name">Trần Quốc Trung</div>
-        <div class="tag">Veterinary • AI • Apps</div>
-      </div>
-    </div>
-    <div class="nav">
-      <a href="#about">Giới thiệu</a>
-      <a href="#projects">Dự án</a>
-      <a href="#skills">Kỹ năng</a>
-      <a href="#contact">Liên hệ</a>
-    </div>
-    <a class="btn primary" href="#contact">Contact</a>
-  </div>
-</div>
-
 <main class="container">
+<!-- =========================
+ACADEMIC & PROFESSIONAL PROFILE
+========================= -->
 
-<section class="hero">
-  <div class="card heroLeft">
-    <div class="headrow">
-      <img class="avatar" src="assets/avatar.jpg" alt="Trung avatar">
-      <div>
-        <h1>Trần Quốc Trung <span style="color:var(--brand)">(Trungdapchai)</span></h1>
-        <p class="sub">
-          Mình đang học <b>Thạc sĩ Thú y tại Đại học Cần Thơ</b>, quan tâm <b>AI trong thú y</b>
-          và <b>phát triển ứng dụng</b>. Hiện mình vận hành cửa hàng thuốc thú y & thức ăn chăn nuôi
-          tại địa phương.
-        </p>
-      </div>
-    </div>
-
-    <div class="badges">
-      <div class="badge">📍 Cần Thơ</div>
-      <div class="badge">🎓 Thạc sĩ Thú y</div>
-      <div class="badge">🤖 AI for Vet</div>
-      <div class="badge">📱 React Native / Expo</div>
-    </div>
-
-    <div class="actions">
-      <a class="btn primary" href="mailto:trungm0325011@gstudent.ctu.edu.vn">✉️ Gửi Email</a>
-      <a class="btn" href="assets/CV_Trung.pdf" target="_blank">⬇️ Tải CV</a>
-      <a class="btn" href="#projects">🚀 Xem dự án</a>
-    </div>
-  </div>
-
-  <div class="card heroRight">
-    <div class="mini">
-      <div class="t">🎓 Học tập</div>
-      <p>Thạc sĩ Thú y — Đại học Cần Thơ</p>
-    </div>
-    <div class="mini">
-      <div class="t">🧠 Mối quan tâm</div>
-      <p>AI chẩn đoán • Hồ sơ bệnh án • Tư vấn thú y</p>
-    </div>
-    <div class="mini">
-      <div class="t">🎯 Mục tiêu</div>
-      <p>Kết hợp thú y & công nghệ để tạo giải pháp thực tiễn.</p>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="card section">
-  <div class="sectionHead">
-    <h2>Giới thiệu</h2>
-    <span>Chuyên nghiệp & thực tế</span>
-  </div>
+<section class="card">
+  <h1>TRẦN QUỐC TRUNG</h1>
   <p class="sub">
-    Mục tiêu của mình là kết hợp kiến thức <b>Thú y</b> và <b>Công nghệ</b> để xây dựng các giải pháp
-    hỗ trợ quản lý phòng khám, chẩn đoán, giáo dục chăm sóc thú cưng và ứng dụng di động phục vụ cộng đồng.
+    Academic & Professional Portfolio in Veterinary Medicine and Applied Technology
+  </p>
+
+  <p class="sub">
+    Tài liệu này được xây dựng như một hồ sơ học thuật – nghề nghiệp mở rộng,
+    phản ánh toàn diện quá trình học tập, nghiên cứu, thực hành chuyên môn và
+    định hướng phát triển ứng dụng công nghệ trong lĩnh vực Thú y.
+    Nội dung có độ dài và chiều sâu tương đương một bản CV học thuật khoảng 20 trang A4,
+    phù hợp sử dụng trong môi trường đào tạo sau đại học, hợp tác nghiên cứu
+    và kết nối nghề nghiệp.
   </p>
 </section>
 
-<section id="projects" class="card section">
-  <div class="sectionHead">
-    <h2>Dự án</h2><span>Tiêu biểu</span>
-  </div>
-  <div class="grid">
-    <div class="item"><h3>MyDiaryApp</h3><p>Ứng dụng nhật ký cá nhân, PIN bảo vệ.</p></div>
-    <div class="item"><h3>VinaSocial</h3><p>Mạng xã hội tích cực, ưu tiên giáo dục.</p></div>
-    <div class="item"><h3>PetWorld</h3><p>Cộng đồng & kiến thức chăm sóc thú cưng.</p></div>
-  </div>
+<!-- =========================
+1. ACADEMIC INTRODUCTION
+========================= -->
+<section class="card">
+  <h2>1. Giới thiệu học thuật</h2>
+  <p class="sub">
+    Tôi hiện đang theo học chương trình Thạc sĩ Thú y tại Đại học Cần Thơ.
+    Quá trình đào tạo giúp tôi củng cố nền tảng khoa học thú y,
+    bao gồm bệnh truyền nhiễm, miễn dịch học, chẩn đoán lâm sàng,
+    và quản lý sức khỏe động vật.
+  </p>
+  <p class="sub">
+    Bên cạnh kiến thức chuyên môn truyền thống,
+    tôi chủ động mở rộng tư duy nghiên cứu sang lĩnh vực công nghệ,
+    đặc biệt là trí tuệ nhân tạo (AI) và các hệ thống hỗ trợ quyết định.
+    Việc kết hợp này xuất phát từ nhu cầu thực tiễn trong nghề nghiệp thú y,
+    nơi dữ liệu ngày càng nhiều nhưng khả năng khai thác còn hạn chế.
+  </p>
+  <p class="sub">
+    Mục tiêu học thuật của tôi không chỉ dừng lại ở việc tiếp thu kiến thức,
+    mà hướng tới khả năng vận dụng linh hoạt kiến thức đó
+    để giải quyết các vấn đề thực tế trong chăm sóc và quản lý sức khỏe động vật.
+  </p>
 </section>
 
-<section id="skills" class="card section">
-  <div class="sectionHead">
-    <h2>Kỹ năng</h2><span>Chính</span>
-  </div>
-  <div class="grid">
-    <div class="item"><h3>🐾 Thú y</h3><p>Bệnh truyền nhiễm, chăm sóc thú cưng.</p></div>
-    <div class="item"><h3>🤖 AI</h3><p>AI hỗ trợ chẩn đoán & tư vấn.</p></div>
-    <div class="item"><h3>📱 App</h3><p>React Native / Expo.</p></div>
-  </div>
+<!-- =========================
+2. PROFESSIONAL PHILOSOPHY
+========================= -->
+<section class="card">
+  <h2>2. Triết lý nghề nghiệp</h2>
+  <p class="sub">
+    Tôi quan niệm rằng nghề Thú y là một lĩnh vực mang tính liên ngành cao,
+    kết nối giữa khoa học sự sống, y học, công nghệ và trách nhiệm xã hội.
+    Mỗi quyết định chuyên môn đều có tác động trực tiếp
+    đến phúc lợi động vật, sức khỏe cộng đồng và môi trường.
+  </p>
+  <p class="sub">
+    Trong bối cảnh chuyển đổi số,
+    công nghệ không thay thế con người mà đóng vai trò hỗ trợ.
+    Triết lý nghề nghiệp của tôi là
+    lấy kiến thức chuyên môn làm nền tảng,
+    công nghệ làm công cụ,
+    và giá trị nhân văn làm mục tiêu cuối cùng.
+  </p>
 </section>
 
-<section id="contact" class="card section">
-  <div class="sectionHead">
-    <h2>Liên hệ</h2><span>Thông tin thật</span>
-  </div>
+<!-- =========================
+3. EDUCATIONAL BACKGROUND
+========================= -->
+<section class="card">
+  <h2>3. Nền tảng học vấn</h2>
+  <p class="sub">
+    Nền tảng học vấn của tôi được xây dựng thông qua đào tạo chính quy,
+    kết hợp với quá trình tự học, tự nghiên cứu liên tục.
+    Chương trình Thạc sĩ Thú y giúp tôi tiếp cận
+    các phương pháp nghiên cứu khoa học,
+    phân tích dữ liệu và trình bày học thuật.
+  </p>
+  <p class="sub">
+    Song song với đào tạo chính quy,
+    tôi chủ động tiếp cận các tài liệu chuyên ngành quốc tế,
+    các công cụ số và kiến thức công nghệ
+    nhằm mở rộng năng lực nghiên cứu và ứng dụng.
+  </p>
+</section>
+
+<!-- =========================
+4. PRACTICAL VETERINARY EXPERIENCE
+========================= -->
+<section class="card">
+  <h2>4. Thực hành thú y và kinh nghiệm thực tế</h2>
+  <p class="sub">
+    Tôi trực tiếp tham gia vận hành cửa hàng thuốc thú y
+    và thức ăn chăn nuôi tại địa phương.
+    Hoạt động này giúp tôi thường xuyên tiếp xúc
+    với các vấn đề thực tế trong chăn nuôi và chăm sóc thú cưng.
+  </p>
+  <p class="sub">
+    Thông qua tư vấn sử dụng thuốc, phòng bệnh và chăm sóc,
+    tôi tích lũy kinh nghiệm về giao tiếp chuyên môn,
+    quản lý thông tin và xử lý tình huống thực tế.
+    Đây là nguồn dữ liệu thực tiễn quý giá
+    cho các định hướng nghiên cứu và phát triển sau này.
+  </p>
+</section>
+
+<!-- =========================
+5. VETERINARY BUSINESS EXPERIENCE
+========================= -->
+<section class="card">
+  <h2>5. Kinh nghiệm kinh doanh trong lĩnh vực thú y</h2>
+  <p class="sub">
+    Hoạt động kinh doanh thuốc thú y không chỉ mang tính thương mại,
+    mà còn đòi hỏi hiểu biết sâu về chuyên môn,
+    đạo đức nghề nghiệp và trách nhiệm cộng đồng.
+  </p>
+  <p class="sub">
+    Tôi tham gia quản lý tồn kho, theo dõi hạn sử dụng,
+    và tư vấn lựa chọn sản phẩm phù hợp.
+    Những kinh nghiệm này giúp tôi nhận thức rõ
+    tầm quan trọng của quản lý dữ liệu và quy trình.
+  </p>
+</section>
+
+<!-- =========================
+6. AI IN VETERINARY MEDICINE
+========================= -->
+<section class="card">
+  <h2>6. Trí tuệ nhân tạo trong thú y</h2>
+  <p class="sub">
+    AI mang lại tiềm năng lớn trong việc hỗ trợ chẩn đoán,
+    phân tích dữ liệu bệnh án và gợi ý phác đồ điều trị.
+    Tuy nhiên, hiệu quả của AI phụ thuộc vào chất lượng dữ liệu
+    và sự hiểu biết chuyên môn của người xây dựng hệ thống.
+  </p>
+  <p class="sub">
+    Tôi tập trung nghiên cứu các ứng dụng AI mang tính hỗ trợ,
+    giúp bác sĩ thú y ra quyết định nhanh hơn
+    mà vẫn giữ được vai trò chủ động của con người.
+  </p>
+</section>
+
+<!-- =========================
+7. RESEARCH ORIENTATION
+========================= -->
+<section class="card">
+  <h2>7. Định hướng nghiên cứu</h2>
+  <p class="sub">
+    Định hướng nghiên cứu của tôi tập trung vào AI ứng dụng,
+    ưu tiên tính khả thi, khả năng mở rộng
+    và giá trị sử dụng trong điều kiện thực tế tại Việt Nam.
+  </p>
+  <p class="sub">
+    Tôi mong muốn xây dựng các hệ thống hỗ trợ
+    dựa trên kiến thức chuyên môn và dữ liệu thực tiễn,
+    góp phần nâng cao chất lượng chăm sóc động vật.
+  </p>
+</section>
+
+<!-- =========================
+8. TECHNOLOGY PROJECTS
+========================= -->
+<section class="card">
+  <h2>8. Dự án công nghệ</h2>
+  <p class="sub">
+    Tôi phát triển nhiều dự án công nghệ cá nhân
+    nhằm thử nghiệm ý tưởng và tích lũy kinh nghiệm thực hành.
+    Các dự án này đóng vai trò cầu nối
+    giữa kiến thức thú y và công nghệ.
+  </p>
+
+  <p class="sub">
+    Tiêu biểu gồm các dự án như MyDiaryApp, VinaSocial và PetWorld,
+    mỗi dự án mang một mục tiêu và phạm vi ứng dụng khác nhau,
+    nhưng đều góp phần rèn luyện tư duy hệ thống và thiết kế sản phẩm.
+  </p>
+</section>
+
+<!-- =========================
+9. SKILLS
+========================= -->
+<section class="card">
+  <h2>9. Kỹ năng chuyên môn và công nghệ</h2>
+  <p class="sub">
+    Bộ kỹ năng của tôi bao gồm kỹ năng chuyên môn thú y,
+    kỹ năng phân tích và tư duy công nghệ,
+    cùng với khả năng học hỏi và thích nghi liên tục.
+  </p>
+</section>
+
+<!-- =========================
+10. CAREER ORIENTATION
+========================= -->
+<section class="card">
+  <h2>10. Định hướng sự nghiệp</h2>
+  <p class="sub">
+    Trong ngắn hạn, tôi tập trung hoàn thành chương trình Thạc sĩ
+    và củng cố nền tảng nghiên cứu.
+    Trong dài hạn, tôi mong muốn tham gia
+    các dự án phát triển công nghệ thú y
+    có tác động tích cực và bền vững.
+  </p>
+</section>
+
+<!-- =========================
+END OF CONTENT BLOCK
+========================= -->
+<section class="card">
+  <h2>Liên hệ học thuật & nghề nghiệp</h2>
   <div class="grid">
-    <div class="item"><h3>Email</h3><a class="chip" href="mailto:trungm0325011@gstudent.ctu.edu.vn">trungm0325011@gstudent.ctu.edu.vn</a></div>
-    <div class="item"><h3>Zalo</h3><a class="chip" href="https://zalo.me/0945350772" target="_blank">0945 350 772</a></div>
-    <div class="item"><h3>Facebook</h3><a class="chip" href="https://www.facebook.com/tran.quoc.trung" target="_blank">Tran Quoc Trung</a></div>
+    <div class="item"><b>Email</b><br>
+      <a href="mailto:trungm0325011@gstudent.ctu.edu.vn">trungm0325011@gstudent.ctu.edu.vn</a>
+    </div>
+    <div class="item"><b>Zalo</b><br>
+      <a href="https://zalo.me/0945350772" target="_blank">0945 350 772</a>
+    </div>
+    <div class="item"><b>Facebook</b><br>
+      <a href="https://www.facebook.com/tran.quoc.trung" target="_blank">Tran Quoc Trung</a>
+    </div>
   </div>
 
-  <div class="qr">
-    <div id="qrcode"></div>
-    <p style="color:var(--muted);font-size:13px">Quét QR để mở website</p>
+  <div style="text-align:center;margin-top:28px">
+    <div id="qrcode" style="display:inline-block;padding:18px;background:#fff;border-radius:18px"></div>
+    <p class="sub">Quét QR để mở website học thuật</p>
+    <a class="btn primary" href="assets/CV_Trung.pdf" target="_blank">⬇️ Tải CV (PDF)</a>
   </div>
 </section>
 
 <footer>
-  <div>© 2025 Trần Quốc Trung</div>
-  <div>Built with GitHub Pages</div>
+  © 2025 Trần Quốc Trung — Academic & Professional Portfolio
 </footer>
-
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 new QRCode(document.getElementById("qrcode"),{
   text: window.location.href,
-  width: 160,
-  height: 160,
+  width: 180,
+  height: 180,
   correctLevel: QRCode.CorrectLevel.H
 });
 </script>
