@@ -381,4 +381,110 @@
     </div>
 
     <!-- About -->
-    <section id="about" c
+    <section id="about" class="card section">
+      <div class="section-head">
+        <h2>Giới thiệu</h2>
+        <span>Ngắn gọn • rõ ràng • chuyên nghiệp</span>
+      </div>
+      <p style="margin:0; color: var(--muted); line-height:1.8;">
+        Mục tiêu của mình là kết hợp kiến thức <b>Thú y</b> và <b>Công nghệ</b> để tạo ra các giải pháp hữu ích:
+        quản lý phòng khám, hỗ trợ chẩn đoán, giáo dục chăm sóc thú cưng, và ứng dụng di động phục vụ cộng đồng.
+      </p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="card section">
+      <div class="section-head">
+        <h2>Dự án nổi bật</h2>
+        <span>3 dự án tiêu biểu</span>
+      </div>
+
+      <div class="grid">
+        <div class="project">
+          <div class="tag">App</div>
+          <h3>MyDiaryApp</h3>
+          <p>Ứng dụng nhật ký song ngữ, có PIN bảo vệ, lưu trữ bài viết và trải nghiệm cá nhân.</p>
+          <div class="links">
+            <a class="link" href="#" onclick="alert('Bạn gắn link repo/demopage vào đây nhé!'); return false;">Repo</a>
+            <a class="link" href="#" onclick="alert('Nếu có demo online, bạn gắn link tại đây.'); return false;">Demo</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="tag">Social</div>
+          <h3>VinaSocial</h3>
+          <p>Mạng xã hội tích cực: đăng bài, tương tác, QR chia sẻ, ưu tiên nội dung giáo dục & du lịch.</p>
+          <div class="links">
+            <a class="link" href="#" onclick="alert('Bạn gắn link repo vào đây nhé!'); return false;">Repo</a>
+            <a class="link" href="#" onclick="alert('Bạn có thể tạo trang giới thiệu tính năng / landing page.'); return false;">Landing</a>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="tag">Pets</div>
+          <h3>PetWorld</h3>
+          <p>Thế giới thú cưng: chia sẻ kiến thức, chăm sóc chó mèo, và cộng đồng yêu thú cưng.</p>
+          <div class="links">
+            <a class="link" href="#" onclick="alert('Gắn link repo PetWorld ở đây.'); return false;">Repo</a>
+            <a class="link" href="#" onclick="alert('Có thể thêm mục blog/chia sẻ kiến thức thú y.'); return false;">Blog</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="card section">
+      <div class="section-head">
+        <h2>Kỹ năng</h2>
+        <span>Những gì bạn đang làm tốt</span>
+      </div>
+      <div class="grid">
+        <div class="project">
+          <h3>🐾 Thú y</h3>
+          <p>Kiến thức bệnh truyền nhiễm, chăm sóc thú cưng, thực hành và ứng dụng thực tế tại địa phương.</p>
+        </div>
+        <div class="project">
+          <h3>🤖 AI trong thú y</h3>
+          <p>Khám phá công cụ AI hỗ trợ chẩn đoán, quản lý dữ liệu bệnh án, tư vấn và triage.</p>
+        </div>
+        <div class="project">
+          <h3>📱 App development</h3>
+          <p>React Native/Expo (định hướng), UI/UX cơ bản, xây dựng sản phẩm theo từng tính năng.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="card section">
+      <div class="section-head">
+        <h2>Liên hệ</h2>
+        <span>Điền thông tin thật của bạn</span>
+      </div>
+
+      <div class="grid">
+        <div class="project">
+          <h3>📧 Email</h3>
+          <p><a class="link" href="mailto:you@example.com">you@example.com</a></p>
+        </div>
+        <div class="project">
+          <h3>🐙 GitHub</h3>
+          <p><a class="link" href="https://github.com/trungm0325011-coder" target="_blank" rel="noopener">github.com/trungm0325011-coder</a></p>
+        </div>
+        <div class="project">
+          <h3>🌐 Facebook / Zalo</h3>
+          <p><a class="link" href="#" onclick="alert('Dán link Facebook/Zalo của bạn vào đây'); return false;">Thêm link</a></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> Trần Quốc Trung (Trungdapchai)</div>
+      <div style="opacity:.9;">Built with GitHub Pages</div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
