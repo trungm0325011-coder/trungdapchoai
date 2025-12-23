@@ -1,292 +1,719 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trần Quốc Trung — Academic & Professional Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trần Quốc Trung — Portfolio</title>
+  <meta name="description" content="Portfolio cá nhân của Trần Quốc Trung: Thú y • AI • Ứng dụng • Dự án • CV." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Open Graph (chia sẻ Facebook/Zalo đẹp) -->
+  <meta property="og:title" content="Trần Quốc Trung — Portfolio" />
+  <meta property="og:description" content="Thú y • AI • Ứng dụng • Dự án • CV" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="avatar.jpg" />
 
-<style>
-/* ==== GLOBAL STYLE (GIỮ NGUYÊN) ==== */
-:root{
-  --bg:#070A10;
-  --card:rgba(255,255,255,.06);
-  --line:rgba(255,255,255,.12);
-  --text:rgba(255,255,255,.92);
-  --muted:rgba(255,255,255,.68);
-  --brand:#F6C445;
-  --brand2:#E64545;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;font-family:Inter,system-ui,sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(1100px 650px at 15% 0%, rgba(230,69,69,.20), transparent 60%),
-    radial-gradient(900px 600px at 90% 10%, rgba(246,196,69,.16), transparent 55%),
-    var(--bg);
-}
-a{text-decoration:none;color:inherit}
-.container{width:min(1120px,92vw);margin:auto;padding:28px 0 90px}
-.card{border:1px solid var(--line);background:rgba(255,255,255,.05);border-radius:18px;padding:28px;margin-top:18px}
-h1,h2,h3{letter-spacing:-.4px}
-.sub{color:var(--muted);line-height:1.85;font-size:15px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-.item{border:1px solid var(--line);border-radius:16px;padding:16px;background:rgba(255,255,255,.04)}
-.badge{padding:8px 10px;border-radius:999px;border:1px solid var(--line);font-size:12px;font-weight:800}
-.btn{padding:10px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.06);font-weight:700}
-.btn.primary{background:linear-gradient(135deg,var(--brand2),var(--brand));color:#151515;border:none}
-.avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--brand)}
-footer{margin-top:40px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);color:var(--muted);font-size:13px}
-</style>
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #070A10;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.12);
+      --txt: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --muted2: rgba(255,255,255,.56);
+      --brand: #ff3b3b;   /* đỏ */
+      --brand2:#ffd54a;   /* vàng */
+      --ok:#36d399;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+      --radius2: 24px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--txt);
+      background:
+        radial-gradient(1000px 500px at 15% 10%, rgba(255,59,59,.18), transparent 55%),
+        radial-gradient(900px 500px at 80% 15%, rgba(255,213,74,.14), transparent 60%),
+        radial-gradient(700px 500px at 40% 85%, rgba(74,144,255,.10), transparent 55%),
+        linear-gradient(180deg, #05070c 0%, #070A10 100%);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* Utilities */
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .grid{display:grid; gap:18px}
+    .card{
+      background:linear-gradient(180deg, var(--panel) 0%, rgba(255,255,255,.04) 100%);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .card.pad{padding:18px}
+    .muted{color:var(--muted)}
+    .muted2{color:var(--muted2)}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-weight:600;
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background:linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 0 4px rgba(255,59,59,.12);
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      background:rgba(7,10,16,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(10px);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .brand-badge{
+      width:34px; height:34px; border-radius:12px;
+      display:grid; place-items:center;
+      background:linear-gradient(135deg, rgba(255,59,59,.22), rgba(255,213,74,.18));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 14px 40px rgba(0,0,0,.35);
+    }
+    .brand-badge span{
+      font-weight:900;
+      background:linear-gradient(135deg, var(--brand), var(--brand2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .nav a{
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    .nav a:hover{
+      color:var(--txt);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .nav-links{
+      display:flex; align-items:center; gap:6px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    /* Hero */
+    .hero{padding:26px 0 18px}
+    .hero-grid{
+      grid-template-columns: 1.15fr .85fr;
+      align-items:stretch;
+    }
+    .hero-left{padding:22px}
+    .hero-right{padding:22px}
+
+    .headline{
+      font-size:40px;
+      line-height:1.08;
+      margin:10px 0 12px;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      font-size:15px;
+      line-height:1.65;
+      color:var(--muted);
+      margin:0 0 16px;
+      max-width:64ch;
+    }
+    .cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.05);
+      color:var(--txt);
+      font-weight:800;
+      font-size:14px;
+      min-width:170px;
+      cursor:pointer;
+      transition:.18s ease;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.07)}
+    .btn-primary{
+      border-color: rgba(255,59,59,.35);
+      background:linear-gradient(135deg, rgba(255,59,59,.25), rgba(255,213,74,.14));
+    }
+    .btn-primary:hover{
+      background:linear-gradient(135deg, rgba(255,59,59,.32), rgba(255,213,74,.18));
+    }
+    .btn-ghost{
+      min-width:170px;
+    }
+    .btn small{font-weight:700; color:var(--muted); display:block; font-size:11px; margin-top:2px}
+    .btn .ico{
+      width:26px; height:26px; border-radius:10px;
+      display:grid; place-items:center;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    /* Big avatar (to rõ) */
+    .avatar-wrap{
+      display:grid;
+      gap:12px;
+      align-content:start;
+    }
+    .avatar{
+      width:100%;
+      aspect-ratio: 1 / 1;  /* vuông, nổi bật */
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.16);
+      overflow:hidden;
+      background:rgba(255,255,255,.04);
+      position:relative;
+      box-shadow: 0 24px 80px rgba(0,0,0,.55);
+    }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: scale(1.03);
+    }
+    .avatar::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(600px 300px at 30% 10%, rgba(255,59,59,.18), transparent 55%),
+                  radial-gradient(600px 320px at 80% 20%, rgba(255,213,74,.12), transparent 55%);
+      mix-blend-mode: overlay;
+      pointer-events:none;
+    }
+
+    .mini-info{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .mini{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:12px 12px;
+      background:rgba(255,255,255,.04);
+    }
+    .mini b{display:block; font-size:13px}
+    .mini span{color:var(--muted); font-size:12px}
+
+    /* Sections */
+    section{padding:10px 0 18px}
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin:6px 0 12px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+
+    /* Two columns content */
+    .content-grid{
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Lists */
+    .list{display:grid; gap:12px}
+    .item{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .item h3{margin:0 0 6px; font-size:14px}
+    .item p{margin:0; color:var(--muted); font-size:13px; line-height:1.6}
+    .meta{
+      display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;
+    }
+
+    /* Contact */
+    .contact-grid{
+      grid-template-columns: 1.1fr .9fr;
+      align-items:stretch;
+    }
+    .contact-row{
+      display:grid;
+      grid-template-columns: 120px 1fr;
+      gap:10px;
+      padding:12px 0;
+      border-top:1px dashed rgba(255,255,255,.12);
+    }
+    .contact-row:first-child{border-top:none}
+    .label{color:var(--muted2); font-weight:800; font-size:12px; text-transform:uppercase; letter-spacing:.8px}
+    .value{color:var(--txt); font-weight:700}
+    .value a{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      margin-right:8px;
+      margin-top:6px;
+    }
+    .value a:hover{background:rgba(255,255,255,.06)}
+    .small-note{margin-top:10px; color:var(--muted); font-size:12px; line-height:1.6}
+
+    /* Footer */
+    footer{
+      padding:26px 0 34px;
+      color:var(--muted2);
+      font-size:12px;
+    }
+    .foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.10);
+      padding-top:14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr}
+      .content-grid{grid-template-columns: 1fr}
+      .contact-grid{grid-template-columns: 1fr}
+      .headline{font-size:34px}
+      .btn{min-width: 160px}
+      .mini-info{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 520px){
+      .headline{font-size:30px}
+      .mini-info{grid-template-columns:1fr}
+      .nav-links a{padding:9px 10px}
+    }
+  </style>
 </head>
 
 <body>
-<main class="container">
-<!-- =========================
-ACADEMIC & PROFESSIONAL PROFILE
-========================= -->
+  <!-- Header -->
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand" aria-label="Brand">
+          <div class="brand-badge" aria-hidden="true"><span>VS</span></div>
+          <div>
+            <div style="font-size:14px; font-weight:900;">Trần Quốc Trung</div>
+            <div class="muted2" style="font-size:12px; font-weight:700;">Veterinary • AI • App Developer</div>
+          </div>
+        </div>
 
-<section class="card">
-  <h1>TRẦN QUỐC TRUNG</h1>
-  <p class="sub">
-    Academic & Professional Portfolio in Veterinary Medicine and Applied Technology
-  </p>
-
-  <p class="sub">
-    "Hạnh phúc không phải là đích đến, mà là hành trình bạn đang đi."
-"Đừng đợi bão tan mới tìm bình yên, hãy học cách bình yên ngay trong cơn bão."
-"Thành công bắt đầu từ những bước nhỏ nhưng kiên trì mỗi ngày."
-"Người mạnh mẽ không phải là người không bao giờ gục ngã, mà là người đứng dậy sau mỗi lần vấp ngã."
-"Cuộc sống giống như tấm gương, bạn mỉm cười với nó, nó sẽ mỉm cười lại với bạn."
-  </p>
-</section>
-
-<!-- =========================
-1. ACADEMIC INTRODUCTION
-========================= -->
-<section class="card">
-  <h2>1. Giới thiệu học thuật</h2>
-  <p class="sub">
-    Tôi hiện đang theo học chương trình Thạc sĩ Thú y tại Đại học Cần Thơ.
-    Quá trình đào tạo giúp tôi củng cố nền tảng khoa học thú y,
-    bao gồm bệnh truyền nhiễm, miễn dịch học, chẩn đoán lâm sàng,
-    và quản lý sức khỏe động vật.
-  </p>
-  <p class="sub">
-    Bên cạnh kiến thức chuyên môn truyền thống,
-    tôi chủ động mở rộng tư duy nghiên cứu sang lĩnh vực công nghệ,
-    đặc biệt là trí tuệ nhân tạo (AI) và các hệ thống hỗ trợ quyết định.
-    Việc kết hợp này xuất phát từ nhu cầu thực tiễn trong nghề nghiệp thú y,
-    nơi dữ liệu ngày càng nhiều nhưng khả năng khai thác còn hạn chế.
-  </p>
-  <p class="sub">
-    Mục tiêu học thuật của tôi không chỉ dừng lại ở việc tiếp thu kiến thức,
-    mà hướng tới khả năng vận dụng linh hoạt kiến thức đó
-    để giải quyết các vấn đề thực tế trong chăm sóc và quản lý sức khỏe động vật.
-  </p>
-</section>
-
-<!-- =========================
-2. PROFESSIONAL PHILOSOPHY
-========================= -->
-<section class="card">
-  <h2>2. Triết lý nghề nghiệp</h2>
-  <p class="sub">
-    Tôi quan niệm rằng nghề Thú y là một lĩnh vực mang tính liên ngành cao,
-    kết nối giữa khoa học sự sống, y học, công nghệ và trách nhiệm xã hội.
-    Mỗi quyết định chuyên môn đều có tác động trực tiếp
-    đến phúc lợi động vật, sức khỏe cộng đồng và môi trường.
-  </p>
-  <p class="sub">
-    Trong bối cảnh chuyển đổi số,
-    công nghệ không thay thế con người mà đóng vai trò hỗ trợ.
-    Triết lý nghề nghiệp của tôi là
-    lấy kiến thức chuyên môn làm nền tảng,
-    công nghệ làm công cụ,
-    và giá trị nhân văn làm mục tiêu cuối cùng.
-  </p>
-</section>
-
-<!-- =========================
-3. EDUCATIONAL BACKGROUND
-========================= -->
-<section class="card">
-  <h2>3. Nền tảng học vấn</h2>
-  <p class="sub">
-    Nền tảng học vấn của tôi được xây dựng thông qua đào tạo chính quy,
-    kết hợp với quá trình tự học, tự nghiên cứu liên tục.
-    Chương trình Thạc sĩ Thú y giúp tôi tiếp cận
-    các phương pháp nghiên cứu khoa học,
-    phân tích dữ liệu và trình bày học thuật.
-  </p>
-  <p class="sub">
-    Song song với đào tạo chính quy,
-    tôi chủ động tiếp cận các tài liệu chuyên ngành quốc tế,
-    các công cụ số và kiến thức công nghệ
-    nhằm mở rộng năng lực nghiên cứu và ứng dụng.
-  </p>
-</section>
-
-<!-- =========================
-4. PRACTICAL VETERINARY EXPERIENCE
-========================= -->
-<section class="card">
-  <h2>4. Thực hành thú y và kinh nghiệm thực tế</h2>
-  <p class="sub">
-    Tôi trực tiếp tham gia vận hành cửa hàng thuốc thú y
-    và thức ăn chăn nuôi tại địa phương.
-    Hoạt động này giúp tôi thường xuyên tiếp xúc
-    với các vấn đề thực tế trong chăn nuôi và chăm sóc thú cưng.
-  </p>
-  <p class="sub">
-    Thông qua tư vấn sử dụng thuốc, phòng bệnh và chăm sóc,
-    tôi tích lũy kinh nghiệm về giao tiếp chuyên môn,
-    quản lý thông tin và xử lý tình huống thực tế.
-    Đây là nguồn dữ liệu thực tiễn quý giá
-    cho các định hướng nghiên cứu và phát triển sau này.
-  </p>
-</section>
-
-<!-- =========================
-5. VETERINARY BUSINESS EXPERIENCE
-========================= -->
-<section class="card">
-  <h2>5. Kinh nghiệm kinh doanh trong lĩnh vực thú y</h2>
-  <p class="sub">
-    Hoạt động kinh doanh thuốc thú y không chỉ mang tính thương mại,
-    mà còn đòi hỏi hiểu biết sâu về chuyên môn,
-    đạo đức nghề nghiệp và trách nhiệm cộng đồng.
-  </p>
-  <p class="sub">
-    Tôi tham gia quản lý tồn kho, theo dõi hạn sử dụng,
-    và tư vấn lựa chọn sản phẩm phù hợp.
-    Những kinh nghiệm này giúp tôi nhận thức rõ
-    tầm quan trọng của quản lý dữ liệu và quy trình.
-  </p>
-</section>
-
-<!-- =========================
-6. AI IN VETERINARY MEDICINE
-========================= -->
-<section class="card">
-  <h2>6. Trí tuệ nhân tạo trong thú y</h2>
-  <p class="sub">
-    AI mang lại tiềm năng lớn trong việc hỗ trợ chẩn đoán,
-    phân tích dữ liệu bệnh án và gợi ý phác đồ điều trị.
-    Tuy nhiên, hiệu quả của AI phụ thuộc vào chất lượng dữ liệu
-    và sự hiểu biết chuyên môn của người xây dựng hệ thống.
-  </p>
-  <p class="sub">
-    Tôi tập trung nghiên cứu các ứng dụng AI mang tính hỗ trợ,
-    giúp bác sĩ thú y ra quyết định nhanh hơn
-    mà vẫn giữ được vai trò chủ động của con người.
-  </p>
-</section>
-
-<!-- =========================
-7. RESEARCH ORIENTATION
-========================= -->
-<section class="card">
-  <h2>7. Định hướng nghiên cứu</h2>
-  <p class="sub">
-    Định hướng nghiên cứu của tôi tập trung vào AI ứng dụng,
-    ưu tiên tính khả thi, khả năng mở rộng
-    và giá trị sử dụng trong điều kiện thực tế tại Việt Nam.
-  </p>
-  <p class="sub">
-    Tôi mong muốn xây dựng các hệ thống hỗ trợ
-    dựa trên kiến thức chuyên môn và dữ liệu thực tiễn,
-    góp phần nâng cao chất lượng chăm sóc động vật.
-  </p>
-</section>
-
-<!-- =========================
-8. TECHNOLOGY PROJECTS
-========================= -->
-<section class="card">
-  <h2>8. Dự án công nghệ</h2>
-  <p class="sub">
-    Tôi phát triển nhiều dự án công nghệ cá nhân
-    nhằm thử nghiệm ý tưởng và tích lũy kinh nghiệm thực hành.
-    Các dự án này đóng vai trò cầu nối
-    giữa kiến thức thú y và công nghệ.
-  </p>
-
-  <p class="sub">
-    Tiêu biểu gồm các dự án như MyDiaryApp, VinaSocial và PetWorld,
-    mỗi dự án mang một mục tiêu và phạm vi ứng dụng khác nhau,
-    nhưng đều góp phần rèn luyện tư duy hệ thống và thiết kế sản phẩm.
-  </p>
-</section>
-
-<!-- =========================
-9. SKILLS
-========================= -->
-<section class="card">
-  <h2>9. Kỹ năng chuyên môn và công nghệ</h2>
-  <p class="sub">
-    Bộ kỹ năng của tôi bao gồm kỹ năng chuyên môn thú y,
-    kỹ năng phân tích và tư duy công nghệ,
-    cùng với khả năng học hỏi và thích nghi liên tục.
-  </p>
-</section>
-
-<!-- =========================
-10. CAREER ORIENTATION
-========================= -->
-<section class="card">
-  <h2>10. Định hướng sự nghiệp</h2>
-  <p class="sub">
-    Trong ngắn hạn, tôi tập trung hoàn thành chương trình Thạc sĩ
-    và củng cố nền tảng nghiên cứu.
-    Trong dài hạn, tôi mong muốn tham gia
-    các dự án phát triển công nghệ thú y
-    có tác động tích cực và bền vững.
-  </p>
-</section>
-
-<!-- =========================
-END OF CONTENT BLOCK
-========================= -->
-<section class="card">
-  <h2>Liên hệ học thuật & nghề nghiệp</h2>
-  <div class="grid">
-    <div class="item"><b>Email</b><br>
-      <a href="mailto:trungm0325011@gstudent.ctu.edu.vn">trungm0325011@gstudent.ctu.edu.vn</a>
+        <nav class="nav-links" aria-label="Navigation">
+          <a href="#about">Giới thiệu</a>
+          <a href="#skills">Kỹ năng</a>
+          <a href="#projects">Dự án</a>
+          <a href="#cv">CV</a>
+          <a href="#contact">Liên hệ</a>
+        </nav>
+      </div>
     </div>
-    <div class="item"><b>Zalo</b><br>
-      <a href="https://zalo.me/0945350772" target="_blank">0945 350 772</a>
-    </div>
-    <div class="item"><b>Facebook</b><br>
-      <a href="https://www.facebook.com/tran.quoc.trung" target="_blank">Tran Quoc Trung</a>
-    </div>
-  </div>
+  </header>
 
-  <div style="text-align:center;margin-top:28px">
-    <div id="qrcode" style="display:inline-block;padding:18px;background:#fff;border-radius:18px"></div>
-    <p class="sub">Quét QR để mở website học thuật</p>
-    <a class="btn primary" href="assets/CV_Trung.pdf" target="_blank">⬇️ Tải CV (PDF)</a>
-  </div>
-</section>
+  <!-- Hero -->
+  <main class="wrap">
+    <section class="hero">
+      <div class="grid hero-grid">
+        <!-- Left -->
+        <div class="card hero-left">
+          <div class="pill"><span class="dot"></span> Online • Sẵn sàng hợp tác</div>
+          <h1 class="headline">
+            Portfolio cá nhân — <span style="background:linear-gradient(135deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent;">Trung</span>
+          </h1>
+          <p class="sub">
+            Tôi là <b>Trần Quốc Trung</b> (Cần Thơ) — định hướng phát triển trong <b>Thú y</b>, ứng dụng <b>AI</b> và xây dựng
+            các sản phẩm <b>App/Web</b>. Trang này giúp bạn xem nhanh thông tin, kỹ năng, dự án và tải CV.
+          </p>
 
-<footer>
-  © 2025 Trần Quốc Trung — Academic & Professional Portfolio
-</footer>
-</main>
+          <div class="meta">
+            <span class="pill">🐾 Thú y</span>
+            <span class="pill">🤖 AI ứng dụng</span>
+            <span class="pill">📱 Mobile App</span>
+            <span class="pill">🌍 English</span>
+          </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script>
-new QRCode(document.getElementById("qrcode"),{
-  text: window.location.href,
-  width: 180,
-  height: 180,
-  correctLevel: QRCode.CorrectLevel.H
-});
-</script>
+          <div class="cta">
+            <a class="btn btn-primary" href="#cv">
+              <span class="ico">📄</span>
+              <span>
+                Xem & Tải CV
+                <small>File: CV_Trung.pdf</small>
+              </span>
+            </a>
 
+            <a class="btn btn-ghost" href="#contact">
+              <span class="ico">☎️</span>
+              <span>
+                Liên hệ nhanh
+                <small>Email • Zalo • Facebook</small>
+              </span>
+            </a>
+          </div>
+
+          <div class="small-note">
+            ✅ Lưu ý: File <b>avatar.jpg</b> và <b>CV_Trung.pdf</b> đang được đọc trực tiếp từ cùng thư mục với <b>index.html</b> (không dùng <b>assets</b>).
+          </div>
+        </div>
+
+        <!-- Right (Avatar big) -->
+        <div class="card hero-right">
+          <div class="avatar-wrap">
+            <div class="avatar" title="avatar.jpg">
+              <img src="avatar.jpg" alt="Avatar của Trần Quốc Trung" loading="eager">
+            </div>
+
+            <div class="mini-info">
+              <div class="mini">
+                <b>Vị trí</b>
+                <span>Cần Thơ, Việt Nam</span>
+              </div>
+              <div class="mini">
+                <b>Lĩnh vực</b>
+                <span>Veterinary • AI • App</span>
+              </div>
+              <div class="mini">
+                <b>Trạng thái</b>
+                <span>Đang học & làm</span>
+              </div>
+              <div class="mini">
+                <b>Tài liệu</b>
+                <span>CV PDF • Portfolio</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-title">
+        <h2>Giới thiệu</h2>
+        <span class="muted2" style="font-weight:700;">Tổng quan nhanh</span>
+      </div>
+
+      <div class="grid content-grid">
+        <div class="card pad">
+          <h3 style="margin:0 0 8px; font-size:15px;">Tôi là ai?</h3>
+          <p class="muted" style="margin:0; line-height:1.75;">
+            Tôi tập trung vào <b>ứng dụng công nghệ</b> trong lĩnh vực <b>Thú y</b> và xây dựng sản phẩm số.
+            Mục tiêu của tôi là tạo ra những giải pháp thực tế: dễ dùng, ổn định, bảo mật và hữu ích cho cộng đồng.
+          </p>
+          <div class="meta" style="margin-top:12px;">
+            <span class="pill">Tư duy sản phẩm</span>
+            <span class="pill">Kỷ luật & bền bỉ</span>
+            <span class="pill">Học nhanh</span>
+          </div>
+        </div>
+
+        <div class="card pad">
+          <h3 style="margin:0 0 8px; font-size:15px;">Tôi mang lại gì?</h3>
+          <div class="list">
+            <div class="item">
+              <h3>✅ Tư duy hệ thống</h3>
+              <p>Thiết kế luồng tính năng rõ ràng, ưu tiên trải nghiệm người dùng, dễ mở rộng.</p>
+            </div>
+            <div class="item">
+              <h3>✅ Tính thực tế</h3>
+              <p>Chọn giải pháp phù hợp điều kiện vận hành, tối ưu hiệu suất và độ ổn định.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-title">
+        <h2>Kỹ năng</h2>
+        <span class="muted2" style="font-weight:700;">Tóm tắt năng lực</span>
+      </div>
+
+      <div class="grid content-grid">
+        <div class="card pad">
+          <h3 style="margin:0 0 10px; font-size:15px;">Chuyên môn</h3>
+          <div class="list">
+            <div class="item">
+              <h3>🐾 Thú y</h3>
+              <p>Kiến thức nền tảng, thực hành và định hướng nghiên cứu/ứng dụng.</p>
+              <div class="meta">
+                <span class="pill">Chẩn đoán</span>
+                <span class="pill">Phòng bệnh</span>
+                <span class="pill">Điều trị</span>
+              </div>
+            </div>
+            <div class="item">
+              <h3>🤖 AI ứng dụng</h3>
+              <p>Ứng dụng AI trong phân tích, tra cứu tri thức, hỗ trợ ra quyết định.</p>
+              <div class="meta">
+                <span class="pill">AI tools</span>
+                <span class="pill">Prompting</span>
+                <span class="pill">Workflow</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card pad">
+          <h3 style="margin:0 0 10px; font-size:15px;">Kỹ năng số</h3>
+          <div class="list">
+            <div class="item">
+              <h3>📱 App/Web</h3>
+              <p>Xây dựng giao diện, tối ưu trải nghiệm, triển khai trên GitHub Pages.</p>
+              <div class="meta">
+                <span class="pill">HTML/CSS</span>
+                <span class="pill">UI Layout</span>
+                <span class="pill">Deploy</span>
+              </div>
+            </div>
+            <div class="item">
+              <h3>🌍 Tiếng Anh</h3>
+              <p>Giao tiếp & luyện viết, sử dụng trong công việc và học thuật.</p>
+              <div class="meta">
+                <span class="pill">Speaking</span>
+                <span class="pill">Writing</span>
+                <span class="pill">Vocabulary</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="section-title">
+        <h2>Dự án</h2>
+        <span class="muted2" style="font-weight:700;">Một số hướng phát triển</span>
+      </div>
+
+      <div class="grid content-grid">
+        <div class="card pad">
+          <div class="list">
+            <div class="item">
+              <h3>📌 Portfolio cá nhân</h3>
+              <p>Website giới thiệu bản thân + CV PDF + liên hệ nhanh (Email, Zalo, Facebook).</p>
+              <div class="meta">
+                <span class="pill">GitHub Pages</span>
+                <span class="pill">1 file index.html</span>
+              </div>
+            </div>
+            <div class="item">
+              <h3>📌 Ứng dụng ghi chú/nhật ký</h3>
+              <p>Xây dựng các tính năng viết bài, lưu trữ, bảo vệ, giao diện đẹp và ổn định.</p>
+              <div class="meta">
+                <span class="pill">Mobile</span>
+                <span class="pill">UI/UX</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card pad">
+          <div class="list">
+            <div class="item">
+              <h3>📌 AI trong thú y</h3>
+              <p>Tổng hợp công cụ AI, hỗ trợ học thuật và ứng dụng thực tế tại phòng khám/cửa hàng.</p>
+              <div class="meta">
+                <span class="pill">Knowledge</span>
+                <span class="pill">Tools</span>
+              </div>
+            </div>
+            <div class="item">
+              <h3>📌 Phát triển cộng đồng</h3>
+              <p>Kết nối học tập, chia sẻ kinh nghiệm và tài nguyên cho người quan tâm đến Thú y & AI.</p>
+              <div class="meta">
+                <span class="pill">Content</span>
+                <span class="pill">Community</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CV -->
+    <section id="cv">
+      <div class="section-title">
+        <h2>CV</h2>
+        <span class="muted2" style="font-weight:700;">Hiển thị rõ + tải nhanh</span>
+      </div>
+
+      <div class="grid content-grid">
+        <div class="card pad">
+          <h3 style="margin:0 0 10px; font-size:15px;">Tải CV</h3>
+          <p class="muted" style="margin:0 0 14px; line-height:1.7;">
+            CV của bạn nằm cùng thư mục với <b>index.html</b> và có tên chính xác: <b>CV_Trung.pdf</b>.
+            Nhấn nút bên dưới để mở hoặc tải.
+          </p>
+
+          <div class="cta">
+            <a class="btn btn-primary" href="CV_Trung.pdf" target="_blank" rel="noopener">
+              <span class="ico">⬇️</span>
+              <span>
+                Mở / Tải CV
+                <small>CV_Trung.pdf</small>
+              </span>
+            </a>
+
+            <a class="btn btn-ghost" href="CV_Trung.pdf" download>
+              <span class="ico">💾</span>
+              <span>
+                Tải về máy
+                <small>Download trực tiếp</small>
+              </span>
+            </a>
+          </div>
+
+          <div class="small-note">
+            Nếu bạn thấy lỗi 404: kiểm tra đúng tên file (<b>CV_Trung.pdf</b>) và đã <b>Commit + Push</b> lên GitHub.
+          </div>
+        </div>
+
+        <div class="card pad">
+          <h3 style="margin:0 0 10px; font-size:15px;">Xem CV ngay trên trang</h3>
+          <p class="muted" style="margin:0 0 12px; line-height:1.7;">
+            Nếu trình duyệt chặn hiển thị PDF, bạn vẫn có thể bấm “Mở/Tải CV” ở bên trái.
+          </p>
+
+          <div style="border:1px solid rgba(255,255,255,.12); border-radius:16px; overflow:hidden; background:rgba(255,255,255,.03)">
+            <iframe
+              title="CV_Trung.pdf"
+              src="CV_Trung.pdf"
+              style="width:100%; height:520px; border:0;"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-title">
+        <h2>Liên hệ</h2>
+        <span class="muted2" style="font-weight:700;">Mail • Zalo • Facebook</span>
+      </div>
+
+      <div class="grid contact-grid">
+        <div class="card pad">
+          <h3 style="margin:0 0 10px; font-size:15px;">Thông tin liên hệ</h3>
+
+          <!-- Bạn thay dữ liệu thật vào các chỗ (CHỈ CẦN SỬA 3 DÒNG) -->
+          <div class="contact-row">
+            <div class="label">Email</div>
+            <div class="value">
+              <a href="mailto:yourmail@gmail.com" title="Gửi email">📧 yourmail@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="label">Zalo</div>
+            <div class="value">
+              <a href="https://zalo.me/0" target="_blank" rel="noopener" title="Mở Zalo link">💬 zalo.me/0</a>
+              <div class="muted2" style="font-size:12px; margin-top:6px;">
+                (Hãy thay số 0 bằng số điện thoại/Zalo link của bạn)
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="label">Facebook</div>
+            <div class="value">
+              <a href="https://facebook.com/yourprofile" target="_blank" rel="noopener" title="Mở Facebook">🔵 facebook.com/yourprofile</a>
+            </div>
+          </div>
+
+          <div class="small-note">
+            ✅ Mẹo: Khi bạn thay đúng link, người khác bấm là mở được ngay.
+            GitHub Pages không bắt buộc bạn công khai số điện thoại nếu bạn không muốn.
+          </div>
+        </div>
+
+        <div class="card pad">
+          <h3 style="margin:0 0 10px; font-size:15px;">Trạng thái & ghi chú</h3>
+          <div class="list">
+            <div class="item">
+              <h3>🟢 Đang sẵn sàng kết nối</h3>
+              <p>Nhắn qua Email/Zalo/Facebook để trao đổi công việc, dự án hoặc học thuật.</p>
+            </div>
+            <div class="item">
+              <h3>🔒 Bảo mật</h3>
+              <p>Nếu bạn muốn ẩn số điện thoại, chỉ dùng Email và link Facebook là đủ.</p>
+            </div>
+            <div class="item">
+              <h3>📌 Deploy GitHub Pages</h3>
+              <p>Nhớ Commit + Push, chờ 30–60 giây, rồi kiểm tra lại đường dẫn.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <div>© <span id="y"></span> Trần Quốc Trung. All rights reserved.</div>
+          <div class="muted2">Built with HTML • CSS • GitHub Pages</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Year
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
