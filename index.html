@@ -1938,16 +1938,147 @@ END:VCARD`;
     /********************
      * 13) ✅ MEDIA PLAYER (YouTube)
      ********************/
-    const ytPlayer = document.getElementById("ytPlayer");
-    const playlistEl = document.getElementById("playlist");
+    /********************
+ * 13) ✅ MEDIA PLAYER (YouTube) — FIXED
+ ********************/
+const ytPlayer = document.getElementById("ytPlayer");
+const playlistEl = document.getElementById("playlist");
 
-    const nowTypeEl = document.getElementById("nowType");
-    const nowTitleEl = document.getElementById("nowTitle");
-    const nowModeEl = document.getElementById("nowMode");
+const nowTypeEl  = document.getElementById("nowType");
+const nowTitleEl = document.getElementById("nowTitle");
+const nowModeEl  = document.getElementById("nowMode");
 
-    let autoplay = true;
-    let loop = false;
-    let currentItem = null;
+let autoplay = true;
+let loop = false;
+let currentItem = null;
+
+// ✅ Base MEDIA (bạn có thể thêm/bớt tùy thích)
+const MEDIA = [
+  // English learning videos (ví dụ)
+  { type:"ENGLISH", title:"English Speaking Practice (Daily Conversation)", meta:"ENGLISH • PRACTICE", desc:"Video luyện speaking (tham khảo).", videoId:"Rk7b2V_ClbY" },
+  { type:"ENGLISH", title:"English Listening Practice (Short Stories)", meta:"ENGLISH • LISTENING", desc:"Video luyện listening (tham khảo).", videoId:"R8bVZqv7BfI" },
+
+  // ✅ 3 bài bạn yêu cầu
+  { type:"MUSIC", title:"Last Christmas — Wham!", meta:"UK/US MUSIC", desc:"Official video.", videoId:"E8gmARGvPlI" },
+  { type:"MUSIC", title:"Let Me Hear Your Voice (声をきかせて) — BIGBANG", meta:"K-POP / JP", desc:"BIGBANG Japan single.", videoId:"oQjcJBGIFsA" },
+  { type:"MUSIC", title:"Lies (거짓말) — BIGBANG", meta:"K-POP", desc:"Official MV.", videoId:"2Cv3phvP8Ro" },
+];
+
+// ✅ ADD MORE UK/US BILLION-VIEW TRACKS (YouTube)
+const MORE_UK_US_BILLION = [
+  { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"UK/US MUSIC • 1B+", desc:"Ed Sheeran (UK) — official video.", videoId:"JGwWNGJdvx8" },
+  { type:"MUSIC", title:"Uptown Funk — Mark Ronson ft. Bruno Mars", meta:"UK/US MUSIC • 1B+", desc:"Mark Ronson (UK) x Bruno Mars (US) — official video.", videoId:"OPf0YbXqDm0" },
+  { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"UK/US MUSIC • 1B+", desc:"Wiz Khalifa (US) — official video.", videoId:"RgKAFK5djSk" },
+  { type:"MUSIC", title:"Roar — Katy Perry", meta:"UK/US MUSIC • 1B+", desc:"Katy Perry (US) — official video.", videoId:"CevxZvSJLk8" },
+  { type:"MUSIC", title:"Dark Horse — Katy Perry ft. Juicy J", meta:"UK/US MUSIC • 1B+", desc:"Katy Perry (US) — official video.", videoId:"0KSOMA3QBU0" },
+  { type:"MUSIC", title:"Sugar — Maroon 5", meta:"UK/US MUSIC • 1B+", desc:"Maroon 5 (US) — official video.", videoId:"09R8_2nJtjg" },
+  { type:"MUSIC", title:"Counting Stars — OneRepublic", meta:"UK/US MUSIC • 1B+", desc:"OneRepublic (US) — official video.", videoId:"hT_nvWreIhg" },
+  { type:"MUSIC", title:"Shake It Off — Taylor Swift", meta:"UK/US MUSIC • 1B+", desc:"Taylor Swift (US) — official video.", videoId:"kNlX5C3Ubn4" },
+  { type:"MUSIC", title:"Blank Space — Taylor Swift", meta:"UK/US MUSIC • 1B+", desc:"Taylor Swift (US) — official video.", videoId:"e-ORhEE9VVg" },
+  { type:"MUSIC", title:"Hello — Adele", meta:"UK/US MUSIC • 1B+", desc:"Adele (UK) — official video.", videoId:"YQHsXMglC9A" },
+  { type:"MUSIC", title:"Someone Like You — Adele", meta:"UK/US MUSIC • 1B+", desc:"Adele (UK) — official video.", videoId:"hLQl3WQQoQ0" },
+  { type:"MUSIC", title:"Let Her Go — Passenger", meta:"UK/US MUSIC • 1B+", desc:"Passenger (UK) — official video.", videoId:"RBumgq5yVrA" },
+  { type:"MUSIC", title:"Believer — Imagine Dragons", meta:"UK/US MUSIC • 1B+", desc:"Imagine Dragons (US) — official video.", videoId:"7wtfhZwyrcc" },
+  { type:"MUSIC", title:"Thunder — Imagine Dragons", meta:"UK/US MUSIC • 1B+", desc:"Imagine Dragons (US) — official video.", videoId:"fKopy74weus" },
+  { type:"MUSIC", title:"Girls Like You — Maroon 5 ft. Cardi B", meta:"UK/US MUSIC • 1B+", desc:"Maroon 5 (US) — official video.", videoId:"aJOTlE1K90k" },
+  { type:"MUSIC", title:"Memories — Maroon 5", meta:"UK/US MUSIC • 1B+", desc:"Maroon 5 (US) — official video.", videoId:"SlPhMPnQ58k" },
+  { type:"MUSIC", title:"All About That Bass — Meghan Trainor", meta:"UK/US MUSIC • 1B+", desc:"Meghan Trainor (US) — official video.", videoId:"7PCkvCPvDXk" },
+  { type:"MUSIC", title:"Closer — The Chainsmokers ft. Halsey", meta:"UK/US MUSIC • 1B+", desc:"The Chainsmokers (US) — official video.", videoId:"0zGcUoRlhmw" },
+];
+
+// ✅ NỐI thêm list lớn vào cuối playlist
+MEDIA.push(...MORE_UK_US_BILLION);
+
+function ytEmbedUrl(videoId){
+  const params = new URLSearchParams();
+  params.set("rel","0");
+  params.set("modestbranding","1");
+  params.set("playsinline","1");
+  if(autoplay) params.set("autoplay","1");
+  if(loop){
+    params.set("loop","1");
+    params.set("playlist", videoId); // loop single video
+  }
+  return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+}
+
+function setActiveTrack(idx){
+  const item = MEDIA[idx];
+  if(!item) return;
+  currentItem = item;
+
+  ytPlayer.src = ytEmbedUrl(item.videoId);
+
+  nowTypeEl.textContent = `TYPE: ${item.type}`;
+  nowTitleEl.textContent = `NOW: ${item.title}`;
+  nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+
+  document.querySelectorAll(".track").forEach(el=>el.classList.remove("active"));
+  const active = document.querySelector(`.track[data-idx="${idx}"]`);
+  if(active) active.classList.add("active");
+}
+
+function renderPlaylist(){
+  playlistEl.innerHTML = MEDIA.map((m, idx)=>`
+    <div class="track" data-idx="${idx}">
+      <div class="trackTop">
+        <div class="trackTitle">${m.title}</div>
+        <div class="trackMeta">${m.meta}</div>
+      </div>
+      <p class="trackDesc">${m.desc}</p>
+    </div>
+  `).join("");
+
+  playlistEl.querySelectorAll(".track").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      const idx = Number(el.getAttribute("data-idx"));
+      setActiveTrack(idx);
+      toast("Switched ✅");
+    });
+  });
+}
+renderPlaylist();
+
+// ✅ Default: ưu tiên “Last Christmas”, nếu không có thì bài đầu
+const defaultIdx = MEDIA.findIndex(x => (x.title || "").toLowerCase().includes("last christmas"));
+setActiveTrack(defaultIdx >= 0 ? defaultIdx : 0);
+
+// Controls
+const apState = document.getElementById("apState");
+const lpState = document.getElementById("lpState");
+
+document.getElementById("btnAutoplay").addEventListener("click", ()=>{
+  autoplay = !autoplay;
+  apState.textContent = autoplay ? "ON" : "OFF";
+  if(currentItem) ytPlayer.src = ytEmbedUrl(currentItem.videoId);
+  nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+  toast("Autoplay " + (autoplay ? "ON" : "OFF"));
+});
+
+document.getElementById("btnLoop").addEventListener("click", ()=>{
+  loop = !loop;
+  lpState.textContent = loop ? "ON" : "OFF";
+  if(currentItem) ytPlayer.src = ytEmbedUrl(currentItem.videoId);
+  nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+  toast("Loop " + (loop ? "ON" : "OFF"));
+});
+
+document.getElementById("btnCopyMedia").addEventListener("click", async ()=>{
+  if(!currentItem) return;
+  const url = `https://www.youtube.com/watch?v=${currentItem.videoId}`;
+  try{
+    await navigator.clipboard.writeText(url);
+    toast("Copied video link ✅");
+  }catch(e){
+    toast("Copy failed");
+  }
+});
+
+document.getElementById("btnOpenYT").addEventListener("click", ()=>{
+  if(!currentItem) return;
+  window.open(`https://www.youtube.com/watch?v=${currentItem.videoId}`, "_blank", "noopener");
+});
+
 
  // ✅ ADD 20 UK/US BILLION-VIEW TRACKS (YouTube)
 const MORE_UK_US_BILLION = [
