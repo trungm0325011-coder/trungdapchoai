@@ -2076,21 +2076,26 @@ document.getElementById("btnOpenYT").addEventListener("click", ()=>{
   window.open(`https://www.youtube.com/watch?v=${currentItem.videoId}`, "_blank", "noopener");
 });
 
-
-// ✅ Base MEDIA (bạn có thể thêm/bớt tùy thích)
-const MEDIA = [
-  // English learning videos (ví dụ)
-  { type:"ENGLISH", title:"English Speaking Practice (Daily Conversation)", meta:"ENGLISH • PRACTICE", desc:"Video luyện speaking (tham khảo).", videoId:"Rk7b2V_ClbY" },
-  { type:"ENGLISH", title:"English Listening Practice (Short Stories)", meta:"ENGLISH • LISTENING", desc:"Video luyện listening (tham khảo).", videoId:"R8bVZqv7BfI" },
-
-  // ✅ 3 bài bạn yêu cầu
-  { type:"MUSIC", title:"Last Christmas — Wham!", meta:"UK/US MUSIC", desc:"Official video.", videoId:"E8gmARGvPlI" },
-  { type:"MUSIC", title:"Let Me Hear Your Voice (声をきかせて) — BIGBANG", meta:"K-POP / JP", desc:"BIGBANG Japan single.", videoId:"oQjcJBGIFsA" },
-  { type:"MUSIC", title:"Lies (거짓말) — BIGBANG", meta:"K-POP", desc:"Official MV.", videoId:"2Cv3phvP8Ro" },
-];
-
 // ✅ ADD MORE UK/US BILLION-VIEW TRACKS (YouTube)
 const MORE_UK_US_BILLION = [
+  { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"UK/US MUSIC • 1B+", desc:"Ed Sheeran (UK) — official video.", videoId:"JGwWNGJdvx8" },
+  { type:"MUSIC", title:"Uptown Funk — Mark Ronson ft. Bruno Mars", meta:"UK/US MUSIC • 1B+", desc:"Mark Ronson (UK) x Bruno Mars (US) — official video.", videoId:"OPf0YbXqDm0" },
+  { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"UK/US MUSIC • 1B+", desc:"Wiz Khalifa (US) — official video.", videoId:"RgKAFK5djSk" },
+  { type:"MUSIC", title:"Roar — Katy Perry", meta:"UK/US MUSIC • 1B+", desc:"Katy Perry (US) — official video.", videoId:"CevxZvSJLk8" },
+  { type:"MUSIC", title:"Dark Horse — Katy Perry ft. Juicy J", meta:"UK/US MUSIC • 1B+", desc:"Katy Perry (US) — official video.", videoId:"0KSOMA3QBU0" },
+  { type:"MUSIC", title:"Sugar — Maroon 5", meta:"UK/US MUSIC • 1B+", desc:"Maroon 5 (US) — official video.", videoId:"09R8_2nJtjg" },
+  { type:"MUSIC", title:"Counting Stars — OneRepublic", meta:"UK/US MUSIC • 1B+", desc:"OneRepublic (US) — official video.", videoId:"hT_nvWreIhg" },
+  { type:"MUSIC", title:"Shake It Off — Taylor Swift", meta:"UK/US MUSIC • 1B+", desc:"Taylor Swift (US) — official video.", videoId:"kNlX5C3Ubn4" },
+  { type:"MUSIC", title:"Blank Space — Taylor Swift", meta:"UK/US MUSIC • 1B+", desc:"Taylor Swift (US) — official video.", videoId:"e-ORhEE9VVg" },
+  { type:"MUSIC", title:"Hello — Adele", meta:"UK/US MUSIC • 1B+", desc:"Adele (UK) — official video.", videoId:"YQHsXMglC9A" },
+  { type:"MUSIC", title:"Someone Like You — Adele", meta:"UK/US MUSIC • 1B+", desc:"Adele (UK) — official video.", videoId:"hLQl3WQQoQ0" },
+  { type:"MUSIC", title:"Let Her Go — Passenger", meta:"UK/US MUSIC • 1B+", desc:"Passenger (UK) — official video.", videoId:"RBumgq5yVrA" },
+  { type:"MUSIC", title:"Believer — Imagine Dragons", meta:"UK/US MUSIC • 1B+", desc:"Imagine Dragons (US) — official video.", videoId:"7wtfhZwyrcc" },
+  { type:"MUSIC", title:"Thunder — Imagine Dragons", meta:"UK/US MUSIC • 1B+", desc:"Imagine Dragons (US) — official video.", videoId:"fKopy74weus" },
+  { type:"MUSIC", title:"Girls Like You — Maroon 5 ft. Cardi B", meta:"UK/US MUSIC • 1B+", desc:"Maroon 5 (US) — official video.", videoId:"aJOTlE1K90k" },
+  { type:"MUSIC", title:"Memories — Maroon 5", meta:"UK/US MUSIC • 1B+", desc:"Maroon 5 (US) — official video.", videoId:"SlPhMPnQ58k" },
+  { type:"MUSIC", title:"All About That Bass — Meghan Trainor", meta:"UK/US MUSIC • 1B+", desc:"Meghan Trainor (US) — official video.", videoId:"7PCkvCPvDXk" },
+  { type:"MUSIC", title:"Closer — The Chainsmokers ft. Halsey", meta:"UK/US MUSIC • 1B+", desc:"The Chainsmokers (US) — official video.", videoId:"0zGcUoRlhmw" },
   { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"UK/US MUSIC • 1B+", desc:"Ed Sheeran (UK) — official video.", videoId:"JGwWNGJdvx8" },
   { type:"MUSIC", title:"Uptown Funk — Mark Ronson ft. Bruno Mars", meta:"UK/US MUSIC • 1B+", desc:"Mark Ronson (UK) x Bruno Mars (US) — official video.", videoId:"OPf0YbXqDm0" },
   { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"UK/US MUSIC • 1B+", desc:"Wiz Khalifa (US) — official video.", videoId:"RgKAFK5djSk" },
@@ -2205,37 +2210,6 @@ document.getElementById("btnOpenYT").addEventListener("click", ()=>{
 });
 
 
- // ✅ ADD 20 UK/US BILLION-VIEW TRACKS (YouTube)
-const MORE_UK_US_BILLION = [
-  { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"UK/US MUSIC • 1B+", desc:"Ed Sheeran (UK) — official video.", videoId:"JGwWNGJdvx8" },
-  { type:"MUSIC", title:"Uptown Funk — Mark Ronson ft. Bruno Mars", meta:"UK/US MUSIC • 1B+", desc:"Mark Ronson (UK) x Bruno Mars (US) — official video.", videoId:"OPf0YbXqDm0" },
-  { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"UK/US MUSIC • 1B+", desc:"Wiz Khalifa (US) — official video.", videoId:"RgKAFK5djSk" },
-  { type:"MUSIC", title:"Roar — Katy Perry", meta:"UK/US MUSIC • 1B+", desc:"Katy Perry (US) — official video.", videoId:"CevxZvSJLk8" },
-  { type:"MUSIC", title:"Dark Horse — Katy Perry ft. Juicy J", meta:"UK/US MUSIC • 1B+", desc:"Katy Perry (US) — official video.", videoId:"0KSOMA3QBU0" },
-  { type:"MUSIC", title:"Sugar — Maroon 5", meta:"UK/US MUSIC • 1B+", desc:"Maroon 5 (US) — official video.", videoId:"09R8_2nJtjg" },
-  { type:"MUSIC", title:"Counting Stars — OneRepublic", meta:"UK/US MUSIC • 1B+", desc:"OneRepublic (US) — official video.", videoId:"hT_nvWreIhg" },
-
-  { type:"MUSIC", title:"Shake It Off — Taylor Swift", meta:"UK/US MUSIC • 1B+", desc:"Taylor Swift (US) — official video.", videoId:"kNlX5C3Ubn4" },
-  { type:"MUSIC", title:"Blank Space — Taylor Swift", meta:"UK/US MUSIC • 1B+", desc:"Taylor Swift (US) — official video.", videoId:"e-ORhEE9VVg" },
-
-  { type:"MUSIC", title:"Hello — Adele", meta:"UK/US MUSIC • 1B+", desc:"Adele (UK) — official video.", videoId:"YQHsXMglC9A" },
-  { type:"MUSIC", title:"Someone Like You — Adele", meta:"UK/US MUSIC • 1B+", desc:"Adele (UK) — official video.", videoId:"hLQl3WQQoQ0" },
-
-  { type:"MUSIC", title:"Let Her Go — Passenger", meta:"UK/US MUSIC • 1B+", desc:"Passenger (UK) — official video.", videoId:"RBumgq5yVrA" },
-
-  { type:"MUSIC", title:"Believer — Imagine Dragons", meta:"UK/US MUSIC • 1B+", desc:"Imagine Dragons (US) — official video.", videoId:"7wtfhZwyrcc" },
-  { type:"MUSIC", title:"Thunder — Imagine Dragons", meta:"UK/US MUSIC • 1B+", desc:"Imagine Dragons (US) — official video.", videoId:"fKopy74weus" },
-
-  { type:"MUSIC", title:"Girls Like You — Maroon 5 ft. Cardi B", meta:"UK/US MUSIC • 1B+", desc:"Maroon 5 (US) — official video.", videoId:"aJOTlE1K90k" },
-  { type:"MUSIC", title:"Memories — Maroon 5", meta:"UK/US MUSIC • 1B+", desc:"Maroon 5 (US) — official video.", videoId:"SlPhMPnQ58k" },
-
-  { type:"MUSIC", title:"All About That Bass — Meghan Trainor", meta:"UK/US MUSIC • 1B+", desc:"Meghan Trainor (US) — official video.", videoId:"7PCkvCPvDXk" },
-
-  { type:"MUSIC", title:"Closer — The Chainsmokers ft. Halsey", meta:"UK/US MUSIC • 1B+", desc:"The Chainsmokers (US) — official video.", videoId:"0zGcUoRlhmw" },
-];
-
-// 👉 Cách dùng: thêm vào cuối MEDIA hiện tại
-// const MEDIA = [...MEDIA, ...MORE_UK_US_BILLION];
 
 
     function ytEmbedUrl(videoId){
