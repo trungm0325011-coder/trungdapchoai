@@ -1821,6 +1821,61 @@ renderGallery();
         `);
       });
     });
+/********************
+
+
+const MEDIA = [
+  { type:"ENGLISH", title:"English Speaking Practice (Daily Conversation)", meta:"ENGLISH • PRACTICE", desc:"Video luyện speaking (tham khảo).", videoId:"Rk7b2V_ClbY" },
+  { type:"ENGLISH", title:"English Listening Practice (Short Stories)", meta:"ENGLISH • LISTENING", desc:"Video luyện listening (tham khảo).", videoId:"R8bVZqv7BfI" },
+
+  { type:"MUSIC", title:"Last Christmas — Wham!", meta:"UK/US MUSIC", desc:"Official video.", videoId:"E8gmARGvPlI" },
+  { type:"MUSIC", title:"Let Me Hear Your Voice (声をきかせて) — BIGBANG", meta:"K-POP / JP", desc:"BIGBANG Japan single.", videoId:"oQjcJBGIFsA" },
+  { type:"MUSIC", title:"Lies (거짓말) — BIGBANG", meta:"K-POP", desc:"Official MV.", videoId:"2Cv3phvP8Ro" },
+];
+
+function ytEmbedUrl(videoId){
+  const p = new URLSearchParams();
+  p.set("rel","0");
+  p.set("modestbranding","1");
+  p.set("playsinline","1");
+  if(autoplay) p.set("autoplay","1");
+  if(loop){
+    p.set("loop","1");
+    p.set("playlist", videoId);
+  }
+  return `https://www.youtube.com/embed/${videoId}?${p.toString()}`;
+}
+
+function setActiveTrack(idx){
+  const item = MEDIA[idx];
+  if(!item) return;
+  currentItem = item;
+
+  ytPlayer.src = ytEmbedUrl(item.videoId);
+  nowTypeEl.textContent  = `TYPE: ${item.type}`;
+  nowTitleEl.textContent = `NOW: ${item.title}`;
+  nowModeEl.textContent  = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+
+  document.querySelectorAll(".track").forEach(el=>el.classList.remove("active"));
+  const a = document.querySelector(`.track[data-idx="${idx}"]`);
+  if(a) a.classList.add("active");
+}
+
+function renderPlaylist(){
+  playlistEl.innerHTML = MEDIA.map((m,i)=>`
+    <div class="track" data-idx="${i}">
+      <div class="trackTitle">${m.title}</div>
+      <div class="trackMeta">${m.meta}</div>
+    </div>
+  `).join("");
+
+  playlistEl.querySelectorAll(".track").forEach(el=>{
+    el.onclick = ()=> setActiveTrack(Number(el.dataset.idx));
+  });
+}
+
+renderPlaylist();
+setActiveTrack(0);
 
     /********************
      * 8) QR GENERATOR
@@ -1941,9 +1996,6 @@ END:VCARD`;
     }, {threshold: 0.25});
     barEls.forEach(b=>io.observe(b));
 
-/********************
- * 13) ✅ MEDIA PLAYER (YouTube) — FIXED
- ********************/
 /********************
  * 13) ✅ MEDIA PLAYER (YouTube) — CLEAN VERSION
  ********************/
