@@ -2478,6 +2478,28 @@ document.getElementById("btnDiaryClearAll").addEventListener("click", ()=>{
 });
 
 // init
+function renderDiary(){
+  const box = document.getElementById("diaryList");
+  if(!box){
+    console.warn("❌ diaryList not found");
+    return;
+  }
+
+  if(!Array.isArray(diary) || diary.length === 0){
+    box.innerHTML = `<div class="muted2">Chưa có nhật ký nào.</div>`;
+    return;
+  }
+
+  box.innerHTML = diary.map(x => `
+    <div class="card pad" style="margin-bottom:12px">
+      <h3 style="margin:0 0 6px">${x.title || "(No title)"}</h3>
+      <div class="muted2" style="white-space:pre-line">${x.content || ""}</div>
+      <div class="muted2" style="margin-top:8px;font-size:12px">
+        ${new Date(x.updatedAt || x.createdAt || Date.now()).toLocaleString()}
+      </div>
+    </div>
+  `).join("");
+}
 loadDiary();
 renderDiary();
 resetEditor();
