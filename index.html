@@ -1760,10 +1760,17 @@
     ];
     const gal = document.getElementById("gal");
     gal.innerHTML = GALLERY.map((g,i)=>`
-      <div class="ph" data-i="${i}">
-        <img src="${g.src}" alt="${g.title}" loading="lazy">
-        <span>${g.title}</span>
-      </div>
+  <div class="ph" data-i="${i}">
+    <img
+      src="${g.src}"
+      alt="${g.title}"
+      loading="lazy"
+      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=70';"
+    >
+    <span>${g.title}</span>
+  </div>
+`).join("");
+
     `).join("");
     gal.querySelectorAll(".ph").forEach(el=>{
       el.addEventListener("click", ()=>{
