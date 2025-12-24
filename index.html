@@ -659,8 +659,75 @@
     }
   </style>
 </head>
-
 <body>
+ <!-- ===================== -->
+<!-- DIARY PAGE (SECTION) -->
+<!-- ===================== -->
+<section id="diary" class="diary-page">
+  <div class="titleRow">
+    <h2>Diary (Write · Edit · Delete)</h2>
+    <span class="muted2" style="font-weight:800">
+      Saved on this device (localStorage)
+    </span>
+  </div>
+
+  <div class="grid diaryGrid">
+
+    <!-- LEFT: WRITE / EDIT -->
+    <div class="card pad">
+      <h3>✍️ Write / Edit</h3>
+
+      <input id="diaryTitle" class="input" placeholder="Tiêu đề..." />
+
+      <textarea
+        id="diaryContent"
+        class="input textarea"
+        rows="6"
+        placeholder="Nội dung nhật ký..."
+      ></textarea>
+
+      <select id="diaryVisibility" class="input">
+        <option value="private">Private (chỉ mình bạn thấy)</option>
+        <option value="public">Public (hiển thị trên web)</option>
+      </select>
+
+      <button id="btnDiarySave" class="btn btnPrimary">
+        💾 Lưu bài
+      </button>
+
+      <div class="muted2" style="margin-top:10px; font-weight:800; font-size:12px">
+        ✔ Lưu vĩnh viễn trên trình duyệt (offline).<br>
+        ✔ Đổi máy sẽ mất nếu không Export.
+      </div>
+    </div>
+
+    <!-- RIGHT: YOUR ENTRIES -->
+    <div class="card pad">
+      <h3>📚 Your entries</h3>
+
+      <input
+        id="diarySearch"
+        class="input"
+        placeholder="Tìm trong nhật ký..."
+      />
+
+      <div class="controls" style="margin-top:10px; gap:10px">
+        <button id="btnDiaryExport" class="miniBtn">⬇ Export JSON</button>
+        <label class="miniBtn" for="diaryImport">⬆ Import JSON</label>
+        <input id="diaryImport" type="file" accept="application/json" hidden>
+        <button id="btnDiaryClearAll" class="miniBtn danger">🗑 Clear all</button>
+      </div>
+
+      <div id="diaryList" class="diaryList"></div>
+      <div id="diaryEmpty" class="muted2" style="display:none">
+        Chưa có bài nào.
+      </div>
+    </div>
+
+  </div>
+</section>
+ 
+</body>
   <!-- Header -->
   <header>
     <div class="wrap">
@@ -2503,6 +2570,129 @@ function renderDiary(){
 loadDiary();
 renderDiary();
 resetEditor();
+<script>
+/* =====================
+   DIARY LOGIC (OFFLINE)
+===================== */
+const DIARY_KEY = "trung_diary_v2";
+let diary = [];
+let editingId = null;
+
+const $ = id => document.getElementById(id);
+
+function uid(){
+  return crypto?.randomUUID
+    ? crypto.randomUUID()
+    : Date.now().toString(16);
+}
+
+function loadDiary(){
+  try{
+    diary = JSON.parse(localStorage.getItem(DIARY_KEY)) || [];
+  }catch(e){ diary = []; }
+}
+
+function saveDiary(){
+  localStorage.setItem(DIARY_KEY, JSON.stringify(diary));
+}
+
+function renderDiary(){
+  const list = $("diaryList");
+  const empty = $("diaryEmpty");
+  const q = ($("diarySearch").value || "").toLowerCase();
+
+  list.innerHTML = "";
+  const items = diary
+    .filter(x =>
+      !q ||
+      x.title.toLowerCase().includes(q) ||
+      x.content.toLowerCase().includes(q)
+    )
+    .sort((a,b)=>b.createdAt - a.createdAt);
+
+  empty.style.display = items.length ? "none" : "block";
+
+  for(const x of items){
+    const div = document.createElement("div");
+    div.className = "entryItem";
+    div.innerHTML = `
+      <div class="entryTitle">${x.title || "(No title)"}</div>
+      <div class="entryMeta">${new Date(x.createdAt).toLocaleString()} · ${x.visibility}</div>
+      <div class="entryActions">
+        <button class="miniBtn" data-act="open">Open</button>
+        <button class="miniBtn danger" data-act="del">Delete</button>
+      </div>
+    `;
+    div.onclick = e=>{
+      const act = e.target.dataset.act;
+      if(act==="del") deleteEntry(x.id);
+      else openEntry(x.id);
+    };
+    list.appendChild(div);
+  }
+}
+
+function openEntry(id){
+  const x = diary.find(d=>d.id===id);
+  if(!x) return;
+  editingId = id;
+  $("diaryTitle").value = x.title;
+  $("diaryContent").value = x.content;
+  $("diaryVisibility").value = x.visibility;
+}
+
+function deleteEntry(id){
+  if(!confirm("Xóa bài này?")) return;
+  diary = diary.filter(d=>d.id!==id);
+  saveDiary(); renderDiary();
+}
+
+$("btnDiarySave").onclick = ()=>{
+  const title = $("diaryTitle").value.trim();
+  const content = $("diaryContent").value.trim();
+  if(!title && !content) return alert("Chưa nhập nội dung.");
+
+  if(editingId){
+    const x = diary.find(d=>d.id===editingId);
+    x.title = title;
+    x.content = content;
+  }else{
+    diary.push({
+      id: uid(),
+      title, content,
+      visibility: $("diaryVisibility").value,
+      createdAt: Date.now()
+    });
+  }
+  editingId = null;
+  $("diaryTitle").value="";
+  $("diaryContent").value="";
+  saveDiary(); renderDiary();
+};
+
+$("btnDiaryClearAll").onclick = ()=>{
+  if(confirm("Xóa TẤT CẢ nhật ký?")){
+    diary=[]; saveDiary(); renderDiary();
+  }
+};
+
+$("btnDiaryExport").onclick = ()=>{
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(diary,null,2)]));
+  a.download="diary.json"; a.click();
+};
+
+$("diaryImport").onchange = async e=>{
+  const f=e.target.files[0];
+  if(!f) return;
+  diary = JSON.parse(await f.text());
+  saveDiary(); renderDiary();
+};
+
+$("diarySearch").oninput = renderDiary;
+
+loadDiary(); renderDiary();
+</script>
 
   </script>
 </body>
