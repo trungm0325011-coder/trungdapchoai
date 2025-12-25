@@ -1216,6 +1216,14 @@
 
           <div style="height:10px"></div>
           <div class="controls" style="margin:10px 0 10px">
+            <div class="controls" style="margin:6px 0 10px">
+  <button class="miniBtn" id="btnPrev">⏮ Prev</button>
+  <button class="miniBtn" id="btnNext">⏭ Next</button>
+  <button class="miniBtn" id="btnRepeat">
+    🔁 Repeat: <b id="rpState">OFF</b>
+  </button>
+</div>
+
   <input class="input" id="mediaQ" placeholder="Search song / artist..." />
   <select class="select" id="mediaTab">
     <option value="global">🌍 Global (1B+)</option>
@@ -1223,7 +1231,8 @@
   </select>
 </div>
 
-<div class="playlist" id="playlist"></div>
+<div class="playlist playlistScroll" id="playlist"></div>
+
 
 <div class="item" style="margin-top:12px">
   <h3 style="margin:0 0 6px">📝 Lyrics (Song ngữ)</h3>
