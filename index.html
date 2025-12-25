@@ -20,6 +20,40 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
   <style>
+    /* ===== MEDIA PRO (index.html addon) ===== */
+.mp-wrap{max-width:1200px;margin:auto;padding:12px}
+.mp-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.mp-title{margin:0;font-size:18px}
+.mp-sub{color:#aeb8c7;font-size:12px}
+.mp-pill{padding:7px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.05);color:#aeb8c7;font-weight:900;font-size:12px;white-space:nowrap}
+
+.mp-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:12px}
+@media(max-width:980px){.mp-grid{grid-template-columns:1fr}}
+
+.mp-card{border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.03);overflow:hidden}
+.mp-head{padding:12px;border-bottom:1px solid rgba(255,255,255,.10);display:flex;justify-content:space-between;gap:10px;align-items:center;background:rgba(0,0,0,.12)}
+.mp-player{padding:12px}
+
+.mp-yt{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.12)}
+.mp-yt iframe{width:100%;height:100%;border:0}
+
+.mp-controls{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.mp-btn{cursor:pointer;padding:9px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;font-weight:800}
+.mp-btn.mp-on{background:rgba(255,90,58,.18);border-color:rgba(255,90,58,.45)}
+.mp-now{margin-top:8px;color:#aeb8c7;font-size:13px}
+
+.mp-listbox{padding:12px}
+.mp-search{width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;outline:none;margin-bottom:10px}
+.mp-scroll{max-height:560px;overflow:auto;padding-right:6px}
+
+.mp-item{display:grid;grid-template-columns:80px 1fr;gap:10px;padding:8px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);cursor:pointer;margin-bottom:8px}
+.mp-item:hover{background:rgba(255,255,255,.05)}
+.mp-item.active{background:linear-gradient(90deg,rgba(255,90,58,.18),rgba(255,184,74,.12));border-color:rgba(255,90,58,.4)}
+.mp-thumb{width:80px;height:45px;border-radius:8px;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.12)}
+.mp-thumb img{width:100%;height:100%;object-fit:cover}
+.mp-meta b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mp-meta small{color:#aeb8c7}
+
     :root{
       --bg: #070A10;
       --bg2:#05070c;
@@ -626,7 +660,53 @@
   </style>
 </head>
 
-<body>
+<body><section id="mediaPro" style="margin-top:16px">
+  <div class="mp-wrap">
+    <div class="mp-top">
+      <div>
+        <h2 class="mp-title">🎵 Playlist PRO</h2>
+        <div class="mp-sub">Search • Shuffle • Loop (cuộn tròn)</div>
+      </div>
+      <div class="mp-pill" id="mpCount">0 items</div>
+    </div>
+
+    <div class="mp-grid">
+      <!-- PLAYER -->
+      <div class="mp-card">
+        <div class="mp-head">
+          <b>🎬 Player</b>
+          <span class="mp-pill" id="mpMode">Shuffle ON • Loop ON</span>
+        </div>
+        <div class="mp-player">
+          <div class="mp-yt"><iframe id="mpYt" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+
+          <div class="mp-controls">
+            <button class="mp-btn" id="mpPrev">⏮ Prev</button>
+            <button class="mp-btn" id="mpPlay">▶ Play</button>
+            <button class="mp-btn" id="mpNext">Next ⏭</button>
+            <button class="mp-btn mp-on" id="mpShuffle">Shuffle</button>
+          </div>
+
+          <div class="mp-now">NOW: <b id="mpNow">—</b></div>
+        </div>
+      </div>
+
+      <!-- PLAYLIST -->
+      <div class="mp-card">
+        <div class="mp-head">
+          <b>🎧 Playlist</b>
+          <span class="mp-pill" id="mpShown">Shown: 0</span>
+        </div>
+
+        <div class="mp-listbox">
+          <input id="mpSearch" class="mp-search" placeholder="🔎 Tìm bài / ca sĩ..." />
+          <div class="mp-scroll" id="mpList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
   <header>
     <div class="wrap">
       <div class="nav">
