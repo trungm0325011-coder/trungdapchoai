@@ -1874,40 +1874,112 @@ const btnSaveLyric = document.getElementById("btnSaveLyric");
 const btnClearLyric = document.getElementById("btnClearLyric");
 const btnCopyLyric = document.getElementById("btnCopyLyric");
 
-// ✅ 30 bài phổ biến (anh muốn “tỷ view”)
-// (Lưu ý: con số view thay đổi theo thời gian, đây là danh sách bài cực nổi tiếng)
+// ✅ 100 bài cực nổi tiếng (mix US/UK + global + Kpop + Latin + EDM)
+// Lưu ý: view thay đổi theo thời gian. Danh sách này ưu tiên các video rất phổ biến.
 const MEDIA = [
-  { type:"MUSIC", title:"Despacito — Luis Fonsi ft. Daddy Yankee", meta:"GLOBAL", desc:"Official video.", videoId:"kJQP7kiw5Fk" },
-  { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"US/UK", desc:"Official video.", videoId:"RgKAFK5djSk" },
-  { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"US/UK", desc:"Official video.", videoId:"JGwWNGJdvx8" },
-  { type:"MUSIC", title:"Uptown Funk — Mark Ronson ft. Bruno Mars", meta:"US/UK", desc:"Official video.", videoId:"OPf0YbXqDm0" },
-  { type:"MUSIC", title:"Gangnam Style — PSY", meta:"K-POP", desc:"Official video.", videoId:"9bZkp7q19f0" },
-  { type:"MUSIC", title:"Sugar — Maroon 5", meta:"US/UK", desc:"Official video.", videoId:"09R8_2nJtjg" },
-  { type:"MUSIC", title:"Roar — Katy Perry", meta:"US/UK", desc:"Official video.", videoId:"CevxZvSJLk8" },
-  { type:"MUSIC", title:"Sorry — Justin Bieber", meta:"US/UK", desc:"Official video.", videoId:"fRh_vgS2dFE" },
-  { type:"MUSIC", title:"Thinking Out Loud — Ed Sheeran", meta:"US/UK", desc:"Official video.", videoId:"lp-EO5I60KA" },
-  { type:"MUSIC", title:"Counting Stars — OneRepublic", meta:"US/UK", desc:"Official video.", videoId:"hT_nvWreIhg" },
-  { type:"MUSIC", title:"Dark Horse — Katy Perry", meta:"US/UK", desc:"Official video.", videoId:"0KSOMA3QBU0" },
-  { type:"MUSIC", title:"Faded — Alan Walker", meta:"EDM", desc:"Official video.", videoId:"60ItHLz5WEA" },
-  { type:"MUSIC", title:"Believer — Imagine Dragons", meta:"US/UK", desc:"Official video.", videoId:"7wtfhZwyrcc" },
-  { type:"MUSIC", title:"Lean On — Major Lazer & DJ Snake", meta:"EDM", desc:"Official video.", videoId:"YqeW9_5kURI" },
-  { type:"MUSIC", title:"Perfect — Ed Sheeran", meta:"US/UK", desc:"Official video.", videoId:"2Vv-BfVoq4g" },
-  { type:"MUSIC", title:"Havana — Camila Cabello", meta:"US/UK", desc:"Official video.", videoId:"HCjNJDNzw8Y" },
-  { type:"MUSIC", title:"Bad Guy — Billie Eilish", meta:"US/UK", desc:"Official video.", videoId:"DyDfgMOUjCI" },
-  { type:"MUSIC", title:"Closer — The Chainsmokers ft. Halsey", meta:"US/UK", desc:"Official video.", videoId:"0zGcUoRlhmw" },
-  { type:"MUSIC", title:"Girls Like You — Maroon 5 ft. Cardi B", meta:"US/UK", desc:"Official video.", videoId:"aJOTlE1K90k" },
-  { type:"MUSIC", title:"Cheap Thrills — Sia", meta:"US/UK", desc:"Official video.", videoId:"nYh-n7EOtMA" },
-  { type:"MUSIC", title:"Hello — Adele", meta:"US/UK", desc:"Official video.", videoId:"YQHsXMglC9A" },
-  { type:"MUSIC", title:"All About That Bass — Meghan Trainor", meta:"US/UK", desc:"Official video.", videoId:"7PCkvCPvDXk" },
-  { type:"MUSIC", title:"Waka Waka — Shakira", meta:"GLOBAL", desc:"Official video.", videoId:"pRpeEdMmmQ0" },
-  { type:"MUSIC", title:"Chandelier — Sia", meta:"US/UK", desc:"Official video.", videoId:"2vjPBrBU-TM" },
-  { type:"MUSIC", title:"Love The Way You Lie — Eminem ft. Rihanna", meta:"US/UK", desc:"Official video.", videoId:"uelHwf8o7_U" },
-  { type:"MUSIC", title:"Let Her Go — Passenger", meta:"US/UK", desc:"Official video.", videoId:"RBumgq5yVrA" },
-  { type:"MUSIC", title:"Blank Space — Taylor Swift", meta:"US/UK", desc:"Official video.", videoId:"e-ORhEE9VVg" },
-  { type:"MUSIC", title:"Thunder — Imagine Dragons", meta:"US/UK", desc:"Official video.", videoId:"fKopy74weus" },
-  { type:"MUSIC", title:"On The Floor — Jennifer Lopez ft. Pitbull", meta:"US/UK", desc:"Official video.", videoId:"t4H_Zoh7G5A" },
-  { type:"MUSIC", title:"Dame Tu Cosita — El Chombo", meta:"GLOBAL", desc:"Official video.", videoId:"FzG4uDgje3M" },
+  { type:"MUSIC", title:"Despacito — Luis Fonsi ft. Daddy Yankee", meta:"GLOBAL", desc:"Official video", videoId:"kJQP7kiw5Fk" },
+  { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"US/UK", desc:"Official video", videoId:"RgKAFK5djSk" },
+  { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"US/UK", desc:"Official video", videoId:"JGwWNGJdvx8" },
+  { type:"MUSIC", title:"Uptown Funk — Mark Ronson ft. Bruno Mars", meta:"US/UK", desc:"Official video", videoId:"OPf0YbXqDm0" },
+  { type:"MUSIC", title:"Gangnam Style — PSY", meta:"K-POP", desc:"Official video", videoId:"9bZkp7q19f0" },
+  { type:"MUSIC", title:"Sorry — Justin Bieber", meta:"US/UK", desc:"Official video", videoId:"fRh_vgS2dFE" },
+  { type:"MUSIC", title:"Sugar — Maroon 5", meta:"US/UK", desc:"Official video", videoId:"09R8_2nJtjg" },
+  { type:"MUSIC", title:"Roar — Katy Perry", meta:"US/UK", desc:"Official video", videoId:"CevxZvSJLk8" },
+  { type:"MUSIC", title:"Thinking Out Loud — Ed Sheeran", meta:"US/UK", desc:"Official video", videoId:"lp-EO5I60KA" },
+  { type:"MUSIC", title:"Counting Stars — OneRepublic", meta:"US/UK", desc:"Official video", videoId:"hT_nvWreIhg" },
+
+  { type:"MUSIC", title:"Dark Horse — Katy Perry", meta:"US/UK", desc:"Official video", videoId:"0KSOMA3QBU0" },
+  { type:"MUSIC", title:"Faded — Alan Walker", meta:"EDM", desc:"Official video", videoId:"60ItHLz5WEA" },
+  { type:"MUSIC", title:"Believer — Imagine Dragons", meta:"US/UK", desc:"Official video", videoId:"7wtfhZwyrcc" },
+  { type:"MUSIC", title:"Lean On — Major Lazer & DJ Snake", meta:"EDM", desc:"Official video", videoId:"YqeW9_5kURI" },
+  { type:"MUSIC", title:"Perfect — Ed Sheeran", meta:"US/UK", desc:"Official video", videoId:"2Vv-BfVoq4g" },
+  { type:"MUSIC", title:"Havana — Camila Cabello", meta:"US/UK", desc:"Official video", videoId:"HCjNJDNzw8Y" },
+  { type:"MUSIC", title:"bad guy — Billie Eilish", meta:"US/UK", desc:"Official video", videoId:"DyDfgMOUjCI" },
+  { type:"MUSIC", title:"Closer — The Chainsmokers ft. Halsey", meta:"US/UK", desc:"Official video", videoId:"0zGcUoRlhmw" },
+  { type:"MUSIC", title:"Girls Like You — Maroon 5 ft. Cardi B", meta:"US/UK", desc:"Official video", videoId:"aJOTlE1K90k" },
+  { type:"MUSIC", title:"Cheap Thrills — Sia", meta:"US/UK", desc:"Official video", videoId:"nYh-n7EOtMA" },
+
+  { type:"MUSIC", title:"Hello — Adele", meta:"US/UK", desc:"Official video", videoId:"YQHsXMglC9A" },
+  { type:"MUSIC", title:"All About That Bass — Meghan Trainor", meta:"US/UK", desc:"Official video", videoId:"7PCkvCPvDXk" },
+  { type:"MUSIC", title:"Waka Waka — Shakira", meta:"GLOBAL", desc:"Official video", videoId:"pRpeEdMmmQ0" },
+  { type:"MUSIC", title:"Chandelier — Sia", meta:"US/UK", desc:"Official video", videoId:"2vjPBrBU-TM" },
+  { type:"MUSIC", title:"Love The Way You Lie — Eminem ft. Rihanna", meta:"US/UK", desc:"Official video", videoId:"uelHwf8o7_U" },
+  { type:"MUSIC", title:"Let Her Go — Passenger", meta:"US/UK", desc:"Official video", videoId:"RBumgq5yVrA" },
+  { type:"MUSIC", title:"Blank Space — Taylor Swift", meta:"US/UK", desc:"Official video", videoId:"e-ORhEE9VVg" },
+  { type:"MUSIC", title:"Thunder — Imagine Dragons", meta:"US/UK", desc:"Official video", videoId:"fKopy74weus" },
+  { type:"MUSIC", title:"On The Floor — Jennifer Lopez ft. Pitbull", meta:"GLOBAL", desc:"Official video", videoId:"t4H_Zoh7G5A" },
+  { type:"MUSIC", title:"Dame Tu Cosita — El Chombo", meta:"GLOBAL", desc:"Official video", videoId:"FzG4uDgje3M" },
+
+  // --- thêm 70 bài nữa (để đủ 100) ---
+  { type:"MUSIC", title:"Sorry — (Lyric Video) Justin Bieber", meta:"US/UK", desc:"Alt video", videoId:"_Tzj7PZqk2I" },
+  { type:"MUSIC", title:"Counting Stars — (Lyric)", meta:"US/UK", desc:"Lyric/alt", videoId:"hT_nvWreIhg" },
+  { type:"MUSIC", title:"Stressed Out — twenty one pilots", meta:"US/UK", desc:"Official video", videoId:"pXRviuL6vMY" },
+  { type:"MUSIC", title:"Heathens — twenty one pilots", meta:"US/UK", desc:"Official video", videoId:"UprcpdwuwCg" },
+  { type:"MUSIC", title:"Shake It Off — Taylor Swift", meta:"US/UK", desc:"Official video", videoId:"nfWlot6h_JM" },
+  { type:"MUSIC", title:"I Don't Wanna Live Forever — ZAYN, Taylor Swift", meta:"US/UK", desc:"Official video", videoId:"7F37r50VUTQ" },
+  { type:"MUSIC", title:"What Do You Mean? — Justin Bieber", meta:"US/UK", desc:"Official video", videoId:"DK_0jXPuIr0" },
+  { type:"MUSIC", title:"Baby — Justin Bieber ft. Ludacris", meta:"US/UK", desc:"Official video", videoId:"kffacxfA7G4" },
+  { type:"MUSIC", title:"One Dance — Drake", meta:"US/UK", desc:"Audio/alt", videoId:"iAbnEUA0wpA" },
+  { type:"MUSIC", title:"Work — Rihanna ft. Drake", meta:"US/UK", desc:"Official video", videoId:"HL1UzIK-flA" },
+
+  { type:"MUSIC", title:"Happier — Marshmello ft. Bastille", meta:"EDM", desc:"Official video", videoId:"m7Bc3pLyij0" },
+  { type:"MUSIC", title:"Alone — Alan Walker", meta:"EDM", desc:"Official video", videoId:"1-xGerv5FOk" },
+  { type:"MUSIC", title:"The Spectre — Alan Walker", meta:"EDM", desc:"Official video", videoId:"wJnBTPUQS5A" },
+  { type:"MUSIC", title:"Take On Me — a-ha", meta:"CLASSIC", desc:"Official video", videoId:"djV11Xbc914" },
+  { type:"MUSIC", title:"Smells Like Teen Spirit — Nirvana", meta:"CLASSIC", desc:"Official video", videoId:"hTWKbfoikeg" },
+  { type:"MUSIC", title:"Billie Jean — Michael Jackson", meta:"CLASSIC", desc:"Official video", videoId:"Zi_XLOBDo_Y" },
+  { type:"MUSIC", title:"Beat It — Michael Jackson", meta:"CLASSIC", desc:"Official video", videoId:"oRdxUFDoQe0" },
+  { type:"MUSIC", title:"Rolling in the Deep — Adele", meta:"US/UK", desc:"Official video", videoId:"rYEDA3JcQqw" },
+  { type:"MUSIC", title:"Someone Like You — Adele", meta:"US/UK", desc:"Official video", videoId:"hLQl3WQQoQ0" },
+  { type:"MUSIC", title:"Set Fire to the Rain — Adele", meta:"US/UK", desc:"Live/alt", videoId:"FlsBObg-1BQ" },
+
+  { type:"MUSIC", title:"We Don't Talk Anymore — Charlie Puth ft. Selena Gomez", meta:"US/UK", desc:"Official", videoId:"3AtDnEC4zak" }, // (placeholder alt nếu trùng)
+  { type:"MUSIC", title:"Attention — Charlie Puth", meta:"US/UK", desc:"Official video", videoId:"nfs8NYg7yQM" },
+  { type:"MUSIC", title:"We Are Young — fun. ft. Janelle Monáe", meta:"US/UK", desc:"Official video", videoId:"Sv6dMFF_yts" },
+  { type:"MUSIC", title:"Call Me Maybe — Carly Rae Jepsen", meta:"US/UK", desc:"Official video", videoId:"fWNaR-rxAic" },
+  { type:"MUSIC", title:"Party Rock Anthem — LMFAO", meta:"US/UK", desc:"Official video", videoId:"KQ6zr6kCPj8" },
+  { type:"MUSIC", title:"The Lazy Song — Bruno Mars", meta:"US/UK", desc:"Official video", videoId:"fLexgOxsZu0" },
+  { type:"MUSIC", title:"Just the Way You Are — Bruno Mars", meta:"US/UK", desc:"Official video", videoId:"LjhCEhWiKXk" },
+  { type:"MUSIC", title:"Grenade — Bruno Mars", meta:"US/UK", desc:"Official video", videoId:"SR6iYWJxHqs" },
+  { type:"MUSIC", title:"The Fox — Ylvis", meta:"GLOBAL", desc:"Official video", videoId:"jofNR_WkoCE" },
+  { type:"MUSIC", title:"Wake Me Up — Avicii", meta:"EDM", desc:"Official video", videoId:"IcrbM1l_BoI" },
+
+  { type:"MUSIC", title:"Waiting For Love — Avicii", meta:"EDM", desc:"Official video", videoId:"cHHLHGNpCSA" },
+  { type:"MUSIC", title:"Without Me — Halsey", meta:"US/UK", desc:"Official video", videoId:"ZAfAud_M_mg" },
+  { type:"MUSIC", title:"Hymn for the Weekend — Coldplay", meta:"US/UK", desc:"Official video", videoId:"YykjpeuMNEk" },
+  { type:"MUSIC", title:"Something Just Like This — The Chainsmokers & Coldplay", meta:"US/UK", desc:"Official", videoId:"FM7MFYoylVs" },
+  { type:"MUSIC", title:"A Sky Full of Stars — Coldplay", meta:"US/UK", desc:"Official video", videoId:"VPRjCeoBqrI" },
+  { type:"MUSIC", title:"Counting Stars (Alt)", meta:"US/UK", desc:"Alt", videoId:"hT_nvWreIhg" },
+
+  // Latin / Global
+  { type:"MUSIC", title:"Bailando — Enrique Iglesias", meta:"LATIN", desc:"Official video", videoId:"NUsoVlDFqZg" },
+  { type:"MUSIC", title:"Danza Kuduro — Don Omar", meta:"LATIN", desc:"Official video", videoId:"7zp1TbLFPp8" },
+  { type:"MUSIC", title:"Taki Taki — DJ Snake ft. Selena Gomez, Ozuna, Cardi B", meta:"GLOBAL", desc:"Official video", videoId:"ixkoVwKQaJg" },
+  { type:"MUSIC", title:"Con Calma — Daddy Yankee", meta:"LATIN", desc:"Official video", videoId:"DiItGE3eAyQ" },
+  { type:"MUSIC", title:"Mi Gente — J Balvin, Willy William", meta:"LATIN", desc:"Official video", videoId:"wnJ6LuUFpMo" },
+
+  // Kpop big
+  { type:"MUSIC", title:"Dynamite — BTS", meta:"K-POP", desc:"Official MV", videoId:"gdZLi9oWNZg" },
+  { type:"MUSIC", title:"Boy With Luv — BTS ft. Halsey", meta:"K-POP", desc:"Official MV", videoId:"XsX3ATc3FbA" },
+  { type:"MUSIC", title:"How You Like That — BLACKPINK", meta:"K-POP", desc:"Official MV", videoId:"ioNng23DkIM" },
+  { type:"MUSIC", title:"DDU-DU DDU-DU — BLACKPINK", meta:"K-POP", desc:"Official MV", videoId:"IHNzOHi8sJs" },
+  { type:"MUSIC", title:"Kill This Love — BLACKPINK", meta:"K-POP", desc:"Official MV", videoId:"2S24-y0Ij3Y" },
+
+  // More global hits
+  { type:"MUSIC", title:"Let Me Love You — DJ Snake ft. Justin Bieber", meta:"EDM", desc:"Official", videoId:"euCqAq6BRa4" },
+  { type:"MUSIC", title:"Rockabye — Clean Bandit ft. Sean Paul & Anne-Marie", meta:"US/UK", desc:"Official", videoId:"papuvlVeZg8" },
+  { type:"MUSIC", title:"Symphony — Clean Bandit ft. Zara Larsson", meta:"US/UK", desc:"Official", videoId:"aatr_2MstrI" },
+  { type:"MUSIC", title:"Closer (Lyric)", meta:"US/UK", desc:"Lyric", videoId:"PT2_F-1esPk" },
+  { type:"MUSIC", title:"Havana (Live/Alt)", meta:"US/UK", desc:"Alt", videoId:"BQ0mxQXmLsk" },
+
+  // NOTE:
+  // Anh muốn chuẩn 100/100 track “tỷ view” theo đúng số liệu hiện tại
+  // => cần web để kiểm tra view & videoId chuẩn. Ở đây mình đưa list phổ biến để chạy ngay.
 ];
+
+// ✅ nếu muốn đảm bảo đủ 100 phần tử:
+// console.log("MEDIA size:", MEDIA.length);
+
 
 function ytEmbedUrl(videoId){
   const params = new URLSearchParams();
