@@ -20,42 +20,6 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
   <style>
-    <style>
-/* YouTube playlist scroll */
-#playlist{
-  max-height: 420px;
-  overflow: auto;
-  padding-right: 6px;
-}
-.track{
-  padding: 10px 12px;
-  border-radius: 12px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  border: 1px solid rgba(255,255,255,.08);
-}
-.track.active{ outline: 2px solid rgba(255, 0, 0, .45); }
-.trackTitle{ font-weight: 700; }
-.trackMeta{ font-size: 12px; opacity: .75; }
-.trackDesc{ font-size: 12px; opacity: .8; margin: 6px 0 0; }
-
-/* MP3 playlist scroll */
-#mp3Playlist{
-  max-height: 320px;
-  overflow: auto;
-  padding-right: 6px;
-}
-.song{
-  padding: 10px 12px;
-  border-radius: 12px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  border: 1px solid rgba(255,255,255,.08);
-}
-.song.active{ outline: 2px solid rgba(255, 215, 0, .55); }
-.muted2{ opacity: .75; }
-</style>
-
     :root{
       --bg: #070A10;
       --bg2:#05070c;
@@ -660,107 +624,6 @@
       .playerBox iframe{height:240px}
     }
   </style>
-  <style>
-.music-player-pro{
-  max-width:520px;
-  margin:auto;
-  background:#111;
-  color:#fff;
-  border-radius:14px;
-  padding:12px;
-  font-family:system-ui;
-}
-.mp-header{
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
-#searchSong{
-  flex:1;
-  padding:8px;
-  border-radius:8px;
-  border:none;
-}
-.mp-controls button{
-  background:#222;
-  color:#fff;
-  border:none;
-  padding:8px 10px;
-  border-radius:8px;
-  cursor:pointer;
-}
-.mp-body audio{
-  width:100%;
-  margin:8px 0;
-}
-.playlist{
-  max-height:220px;
-  overflow-y:auto;
-}
-.song{
-  padding:8px;
-  border-bottom:1px solid #222;
-  cursor:pointer;
-}
-.song:hover{background:#222}
-.lyrics-box{
-  margin:8px 0;
-  background:#000;
-  padding:8px;
-  border-radius:8px;
-  font-size:14px;
-}
-.lyric-vi{color:#ffd86b}
-.lyric-en{color:#7fd7ff}
-</style>
-<style>
-/* MEDIA 2 CỘT */
-.media-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:16px;
-  align-items:start;
-}
-@media (max-width: 980px){
-  .media-grid{ grid-template-columns: 1fr; }
-}
-
-/* YOUTUBE PLAYLIST */
-.yt-playlist{
-  margin-top:12px;
-  max-height:260px;
-  overflow:auto;
-  background:#111;
-  border-radius:12px;
-  padding:8px;
-}
-
-/* MP3 PRO */
-.music-player-pro{max-width:100%;}
-.playlist{
-  max-height:260px;
-  overflow:auto;
-  background:#111;
-  border-radius:12px;
-  padding:8px;
-  margin-top:10px;
-}
-.song{
-  padding:10px;
-  border-bottom:1px solid #222;
-  cursor:pointer;
-}
-.song:hover{background:#222;}
-.lyrics-box{
-  margin-top:10px;
-  background:#000;
-  padding:10px;
-  border-radius:10px;
-}
-.lyric-vi{color:#ffd86b;}
-.lyric-en{color:#7fd7ff;}
-</style>
-
 </head>
 
 <body>
@@ -1193,58 +1056,63 @@
       </div>
     </section>
 
-   <!-- ===== MEDIA ===== -->
-<section id="media">
-  <div class="media-grid">
+    <!-- MEDIA -->
+    <section id="media">
+      <div class="titleRow">
+        <h2>Media (English • UK/US Music)</h2>
+        <span class="muted2" style="font-weight:800">YouTube Player • Playlist • Quick Switch</span>
+      </div>
 
-    <!-- LEFT: YOUTUBE -->
-   <div class="media-left card pad">
-  <iframe
-    id="ytPlayer"
-    width="100%"
-    height="315"
-    src="https://www.youtube.com/embed/E8gmARGvPlI"
-    title="YouTube player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen
-  ></iframe>
+      <div class="grid mediaGrid">
+        <div class="card pad">
+          <div class="item">
+            <h3 style="margin:0 0 6px">🎬 Player</h3>
+            <p class="muted" style="margin:0">
+              Chọn bài ở playlist bên phải để phát ngay. Có nút bật <b>Autoplay</b> và <b>Loop</b>.
+            </p>
+            <div class="tagRow" style="margin-top:10px">
+              <span class="chip" id="nowType">TYPE: MUSIC</span>
+              <span class="chip" id="nowTitle">NOW: Last Christmas</span>
+              <span class="chip" id="nowMode">MODE: Autoplay ON</span>
+            </div>
+          </div>
 
-  <!-- ✅ search cho YouTube -->
-  <input id="ytSearch" class="input" placeholder="🔍 Tìm video YouTube..." style="margin-top:10px; min-width:100%" />
+          <div class="playerBox" style="margin-top:12px">
+            <iframe
+              id="ytPlayer"
+              title="YouTube Player"
+              src=""
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
 
-  <div id="playlist" class="yt-playlist"></div>
-</div>
+          <div class="miniBtns">
+            <button class="miniBtn" id="btnAutoplay" type="button">⚡ Autoplay: <span id="apState">ON</span></button>
+            <button class="miniBtn" id="btnLoop" type="button">🔁 Loop: <span id="lpState">OFF</span></button>
+            <button class="miniBtn" id="btnCopyMedia" type="button">🔗 Copy video link</button>
+            <button class="miniBtn" id="btnOpenYT" type="button">▶️ Open on YouTube</button>
+          </div>
 
-    <!-- RIGHT: MP3 + LYRICS + SCROLL PLAYLIST -->
-    <div class="media-right card pad">
-      <div class="music-player-pro">
-        <div class="mp-header">
-          <input id="searchSong" placeholder="🔍 Tìm bài hát..." />
-          <div class="mp-controls">
-            <button onclick="prevSong()">⏮</button>
-            <button onclick="toggleRandomMode()">🔀</button>
-            <button onclick="nextSong()">⏭</button>
+          <div class="muted2" style="margin-top:10px; font-weight:800; font-size:12px; line-height:1.7">
+            * Tip: Bạn chỉ cần thay <b>videoId</b> ở playlist để đổi bài / đổi video English.
           </div>
         </div>
 
-        <audio id="audioPlayer" controls></audio>
+        <div class="card pad">
+          <div class="item">
+            <h3 style="margin:0 0 6px">🎧 Playlist</h3>
+            <p class="muted" style="margin:0">Gồm: <b>English videos</b> + <b>UK/US music</b>.</p>
+          </div>
 
-        <div class="lyrics-box" id="lyricsBox">
-          <div class="lyric-vi"></div>
-          <div class="lyric-en"></div>
+          <div style="height:10px"></div>
+
+          <div class="playlist" id="playlist"></div>
         </div>
-
-        <div class="playlist" id="mp3Playlist"></div>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
-<!-- ===== END MEDIA ===== -->
-
-    <!-- YOUTUBE VIDEO -->
- 
     <!-- QR -->
     <section id="qr">
       <div class="titleRow">
@@ -1845,52 +1713,22 @@
         `);
       });
     });
-<script>
-/********************
- * 8) ✅ MEDIA (YouTube + MP3) — FIXED: SEARCH, RANDOM, SCROLL
- ********************/
 
-/* ========= DOM ========= */
-const ytPlayerEl = document.getElementById("ytPlayer");
-const ytListEl   = document.getElementById("playlist");
-const ytSearchEl = document.getElementById("ytSearch");
+    /********************
+     * 8) ✅ MEDIA PLAYER (YouTube) — CLEAN + NO DUPLICATE
+     ********************/
+    const ytPlayer = document.getElementById("ytPlayer");
+    const playlistEl = document.getElementById("playlist");
+    const nowTypeEl  = document.getElementById("nowType");
+    const nowTitleEl = document.getElementById("nowTitle");
+    const nowModeEl  = document.getElementById("nowMode");
 
-const mp3ListEl   = document.getElementById("mp3Playlist");
-const mp3SearchEl = document.getElementById("searchSong");
-const audioEl     = document.getElementById("audioPlayer");
+    let autoplay = true;
+    let loop = false;
+    let currentItem = null;
 
-const lyricsBox   = document.getElementById("lyricsBox");
-const lyricViEl   = lyricsBox ? lyricsBox.querySelector(".lyric-vi") : null;
-const lyricEnEl   = lyricsBox ? lyricsBox.querySelector(".lyric-en") : null;
-
-/* ========= SAFE HELPERS ========= */
-function toast(msg){
-  // Nếu anh đã có toast() riêng thì bỏ function này đi
-  console.log("[toast]", msg);
-  const t = document.createElement("div");
-  t.textContent = msg;
-  t.style.cssText = "position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 12px;border-radius:12px;font-size:13px;z-index:99999;opacity:.95";
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(), 2000);
-}
-
-function escHtml(str){
-  return String(str ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-/* ========= DATA ========= */
-/* ✅ Nếu có window.MEDIA (YouTube list) thì dùng, không thì dùng fallback */
-const YT_SOURCE = Array.isArray(window.MEDIA) ? window.MEDIA : [
-  { type:"MUSIC", title:"Last Christmas — Wham!", meta:"UK/US MUSIC", desc:"Official video.", videoId:"E8gmARGvPlI" },
-  { type:"MUSIC", title:"Shape of You — Ed Sheeran", meta:"US/UK • 6B+", desc:"Official video.", videoId:"JGwWNGJdvx8" },
-  { type:"MUSIC", title:"See You Again — Wiz Khalifa ft. Charlie Puth", meta:"US/UK • 6B+", desc:"Official video.", videoId:"RgKAFK5djSk" },
-  { type:"MUSIC", title:"Despacito — Luis Fonsi ft. Daddy Yankee", meta:"GLOBAL • 8B+", desc:"Official video.", videoId:"kJQP7kiw5Fk" },
-   { type:"MUSIC", title:"Last Christmas — Wham!", meta:"UK/US MUSIC", desc:"Official video.", videoId:"E8gmARGvPlI" },
+    const MEDIA = [
+      { type:"MUSIC", title:"Last Christmas — Wham!", meta:"UK/US MUSIC", desc:"Official video.", videoId:"E8gmARGvPlI" },
       { type:"MUSIC", title:"Let Me Hear Your Voice (声をきかせて) — BIGBANG", meta:"K-POP / JP", desc:"BIGBANG Japan single.", videoId:"oQjcJBGIFsA" },
       { type:"MUSIC", title:"Lies (거짓말) — BIGBANG", meta:"K-POP", desc:"Official MV.", videoId:"2Cv3phvP8Ro" },
       { type:"MUSIC", title:"Despacito — Luis Fonsi ft. Daddy Yankee", meta:"GLOBAL • 8B+", desc:"Official video.", videoId:"kJQP7kiw5Fk" },
@@ -1923,423 +1761,212 @@ const YT_SOURCE = Array.isArray(window.MEDIA) ? window.MEDIA : [
       { type:"MUSIC", title:"Believer — Imagine Dragons", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"7wtfhZwyrcc" },
       { type:"MUSIC", title:"Girls Like You — Maroon 5 ft. Cardi B", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"aJOTlE1K90k" },
       { type:"MUSIC", title:"Closer — The Chainsmokers ft. Halsey", meta:"UK/US MUSIC • 1B+", desc:"Official video.", videoId:"0zGcUoRlhmw" },
-      { type:"MUSIC", title:"Waka Waka (This Time for Africa) — Shakira", meta:"GLOBAL • 3B+", desc:"Official video.", videoId:"pRpeEdMmmQ0" },
-{ type:"MUSIC", title:"Chantaje — Shakira ft. Maluma", meta:"GLOBAL • 3B+", desc:"Official video.", videoId:"6Mgqbai3fKo" },
-{ type:"MUSIC", title:"Hips Don't Lie — Shakira ft. Wyclef Jean", meta:"GLOBAL • 1B+", desc:"Official video.", videoId:"DUT5rEU6pqM" },
-{ type:"MUSIC", title:"Mi Gente — J Balvin, Willy William", meta:"GLOBAL • 3B+", desc:"Official video.", videoId:"wnJ6LuUFpMo" },
-{ type:"MUSIC", title:"Bailando — Enrique Iglesias ft. Descemer Bueno, Gente De Zona", meta:"GLOBAL • 3B+", desc:"Official video.", videoId:"NUsoVlDFqZg" },
-{ type:"MUSIC", title:"Dame Tu Cosita — El Chombo", meta:"GLOBAL • 4B+", desc:"Official video.", videoId:"FzG4uDgje3M" },
-{ type:"MUSIC", title:"Taki Taki — DJ Snake ft. Selena Gomez, Ozuna, Cardi B", meta:"GLOBAL • 2B+", desc:"Official video.", videoId:"ixkoVwKQaJg" },
-{ type:"MUSIC", title:"Con Calma — Daddy Yankee & Snow", meta:"GLOBAL • 2B+", desc:"Official video.", videoId:"DiItGE3eAyQ" },
-{ type:"MUSIC", title:"Súbeme La Radio — Enrique Iglesias", meta:"GLOBAL • 1B+", desc:"Official video.", videoId:"9sg-A-eS6Ig" },
-{ type:"MUSIC", title:"Dura — Daddy Yankee", meta:"GLOBAL • 1B+", desc:"Official video.", videoId:"sGIm0-dQd8M" },
+    ];
 
-{ type:"MUSIC", title:"Let Her Go — Passenger", meta:"US/UK • 3B+", desc:"Official video.", videoId:"RBumgq5yVrA" },
-{ type:"MUSIC", title:"Chandelier — Sia", meta:"US/UK • 3B+", desc:"Official video.", videoId:"2vjPBrBU-TM" },
-{ type:"MUSIC", title:"Thunder — Imagine Dragons", meta:"US/UK • 2B+", desc:"Official video.", videoId:"fKopy74weus" },
-{ type:"MUSIC", title:"Demons — Imagine Dragons", meta:"US/UK • 1B+", desc:"Official video.", videoId:"mWRsgZuwf_8" },
-{ type:"MUSIC", title:"Radioactive — Imagine Dragons", meta:"US/UK • 1B+", desc:"Official video.", videoId:"ktvTqknDobU" },
-{ type:"MUSIC", title:"Love Me Like You Do — Ellie Goulding", meta:"US/UK • 2B+", desc:"Official video.", videoId:"AJtDXIazrMo" },
-{ type:"MUSIC", title:"All About That Bass — Meghan Trainor", meta:"US/UK • 2B+", desc:"Official video.", videoId:"7PCkvCPvDXk" },
-{ type:"MUSIC", title:"Wake Me Up — Avicii", meta:"US/UK • 2B+", desc:"Official video.", videoId:"IcrbM1l_BoI" },
-{ type:"MUSIC", title:"The Nights — Avicii", meta:"US/UK • 1B+", desc:"Official video.", videoId:"UtF6Jej8yb4" },
-{ type:"MUSIC", title:"Somebody That I Used To Know — Gotye ft. Kimbra", meta:"US/UK • 2B+", desc:"Official video.", videoId:"8UVNT4wvIGY" },
+    function ytEmbedUrl(videoId){
+      const params = new URLSearchParams();
+      params.set("rel","0");
+      params.set("modestbranding","1");
+      params.set("playsinline","1");
+      if(autoplay) params.set("autoplay","1");
+      if(loop){
+        params.set("loop","1");
+        params.set("playlist", videoId);
+      }
+      return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+    }
 
-{ type:"MUSIC", title:"Blank Space — Taylor Swift", meta:"US/UK • 3B+", desc:"Official video.", videoId:"e-ORhEE9VVg" },
-{ type:"MUSIC", title:"Shake It Off — Taylor Swift", meta:"US/UK • 3B+", desc:"Official video.", videoId:"nfWlot6h_JM" },
-{ type:"MUSIC", title:"Look What You Made Me Do — Taylor Swift", meta:"US/UK • 1B+", desc:"Official video.", videoId:"3tmd-ClpJxA" },
-{ type:"MUSIC", title:"Girls Just Want To Have Fun — Cyndi Lauper", meta:"US/UK • 1B+", desc:"Official video.", videoId:"PIb6AZdTr-A" },
+    function setActiveTrack(idx){
+      const item = MEDIA[idx];
+      if(!item) return;
+      currentItem = item;
 
-{ type:"MUSIC", title:"Sorry (Lyric/Video) — Justin Bieber (alt)", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"PfGaX8G0f2E" },
-{ type:"MUSIC", title:"Baby — Justin Bieber ft. Ludacris", meta:"US/UK • 3B+", desc:"Official video.", videoId:"kffacxfA7G4" },
-{ type:"MUSIC", title:"What Do You Mean? — Justin Bieber", meta:"US/UK • 2B+", desc:"Official video.", videoId:"DK_0jXPuIr0" },
+      ytPlayer.src = ytEmbedUrl(item.videoId);
+      nowTypeEl.textContent  = `TYPE: ${item.type}`;
+      nowTitleEl.textContent = `NOW: ${item.title}`;
+      nowModeEl.textContent  = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
 
-{ type:"MUSIC", title:"Counting Stars (alt upload) — OneRepublic", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"hT_nvWreIhg" },
-{ type:"MUSIC", title:"Wolves — Selena Gomez x Marshmello", meta:"US/UK • 1B+", desc:"Official video.", videoId:"cH4E_t3m3xM" },
-{ type:"MUSIC", title:"It Ain't Me — Kygo & Selena Gomez", meta:"US/UK • 1B+", desc:"Official video.", videoId:"D5drYkLiLI8" },
+      document.querySelectorAll(".track").forEach(el=>el.classList.remove("active"));
+      const active = document.querySelector(`.track[data-idx="${idx}"]`);
+      if(active) active.classList.add("active");
+    }
 
-{ type:"MUSIC", title:"Counting Stars (Live/Alt) — OneRepublic", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"hT_nvWreIhg" },
-{ type:"MUSIC", title:"Love The Way You Lie — Eminem ft. Rihanna", meta:"US/UK • 2B+", desc:"Official video.", videoId:"uelHwf8o7_U" },
-{ type:"MUSIC", title:"The Monster — Eminem ft. Rihanna", meta:"US/UK • 1B+", desc:"Official video.", videoId:"EHkozMIXZ8w" },
-{ type:"MUSIC", title:"Umbrella — Rihanna ft. JAY-Z", meta:"US/UK • 1B+", desc:"Official video.", videoId:"CvBfHwUxHIk" },
-{ type:"MUSIC", title:"Diamonds — Rihanna", meta:"US/UK • 2B+", desc:"Official video.", videoId:"lWA2pjMjpBs" },
-{ type:"MUSIC", title:"We Found Love — Rihanna ft. Calvin Harris", meta:"US/UK • 1B+", desc:"Official video.", videoId:"tg00YEETFzg" },
-
-{ type:"MUSIC", title:"Stay With Me — Sam Smith", meta:"US/UK • 1B+", desc:"Official video.", videoId:"pB-5XG-DbAA" },
-{ type:"MUSIC", title:"I’m Not The Only One — Sam Smith", meta:"US/UK • 1B+", desc:"Official video.", videoId:"nCkpzqqog4k" },
-
-{ type:"MUSIC", title:"Hello — Lionel Richie", meta:"US/UK • 1B+", desc:"Official video.", videoId:"mHONNcZbwDY" },
-{ type:"MUSIC", title:"Billie Jean — Michael Jackson", meta:"US/UK • 1B+", desc:"Official video.", videoId:"Zi_XLOBDo_Y" },
-{ type:"MUSIC", title:"Beat It — Michael Jackson", meta:"US/UK • 1B+", desc:"Official video.", videoId:"oRdxUFDoQe0" },
-{ type:"MUSIC", title:"Thriller — Michael Jackson", meta:"US/UK • 1B+", desc:"Official video.", videoId:"sOnqjkJTMaA" },
-
-{ type:"MUSIC", title:"Smells Like Teen Spirit — Nirvana", meta:"US/UK • 1B+", desc:"Official video.", videoId:"hTWKbfoikeg" },
-{ type:"MUSIC", title:"Numb — Linkin Park", meta:"US/UK • 2B+", desc:"Official video.", videoId:"kXYiU_JCYtU" },
-{ type:"MUSIC", title:"In The End — Linkin Park", meta:"US/UK • 1B+", desc:"Official video.", videoId:"eVTXPUF4Oz4" },
-
-{ type:"MUSIC", title:"Bohemian Rhapsody — Queen", meta:"US/UK • 1B+", desc:"Official video.", videoId:"fJ9rUzIMcZQ" },
-{ type:"MUSIC", title:"Take On Me — a-ha", meta:"US/UK • 1B+", desc:"Official video.", videoId:"djV11Xbc914" },
-
-{ type:"MUSIC", title:"7 Years — Lukas Graham", meta:"US/UK • 1B+", desc:"Official video.", videoId:"LHCob76kigA" },
-{ type:"MUSIC", title:"Stressed Out — Twenty One Pilots", meta:"US/UK • 1B+", desc:"Official video.", videoId:"pXRviuL6vMY" },
-{ type:"MUSIC", title:"Heathens — Twenty One Pilots", meta:"US/UK • 1B+", desc:"Official video.", videoId:"UprcpdwuwCg" },
-
-{ type:"MUSIC", title:"Happier — Marshmello ft. Bastille", meta:"US/UK • 1B+", desc:"Official video.", videoId:"m7Bc3pLyij0" },
-{ type:"MUSIC", title:"Falling — Trevor Daniel", meta:"US/UK • 1B+", desc:"Official video.", videoId:"L7mfjvdnPno" },
-
-{ type:"MUSIC", title:"Sunflower — Post Malone & Swae Lee", meta:"US/UK • 2B+", desc:"Official video.", videoId:"ApXoWvfEYVU" },
-{ type:"MUSIC", title:"Rockstar — Post Malone ft. 21 Savage", meta:"US/UK • 3B+", desc:"Official video.", videoId:"UceaB4D0jpo" },
-{ type:"MUSIC", title:"God's Plan — Drake", meta:"US/UK • 1B+", desc:"Official video.", videoId:"xpVfcZ0ZcFM" },
-
-{ type:"MUSIC", title:"Counting Stars (duplicate-safe alt) — OneRepublic", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"hT_nvWreIhg" },
-
-{ type:"MUSIC", title:"Work — Rihanna ft. Drake", meta:"US/UK • 1B+", desc:"Official video.", videoId:"HL1UzIK-flA" },
-{ type:"MUSIC", title:"This Is What You Came For — Calvin Harris ft. Rihanna", meta:"US/UK • 1B+", desc:"Official video.", videoId:"kOkQ4T5WO9E" },
-
-{ type:"MUSIC", title:"New Rules — Dua Lipa", meta:"US/UK • 3B+", desc:"Official video.", videoId:"k2qgadSvNyU" },
-{ type:"MUSIC", title:"IDGAF — Dua Lipa", meta:"US/UK • 1B+", desc:"Official video.", videoId:"Mgfe5tIwOj0" },
-
-{ type:"MUSIC", title:"Let Me Love You — DJ Snake ft. Justin Bieber", meta:"US/UK • 1B+", desc:"Official video.", videoId:"euCqAq6BRa4" },
-{ type:"MUSIC", title:"Hymn For The Weekend — Coldplay", meta:"US/UK • 2B+", desc:"Official video.", videoId:"YykjpeuMNEk" },
-{ type:"MUSIC", title:"Paradise — Coldplay", meta:"US/UK • 1B+", desc:"Official video.", videoId:"1G4isv_Fylg" },
-{ type:"MUSIC", title:"Something Just Like This — The Chainsmokers & Coldplay", meta:"US/UK • 2B+", desc:"Official video.", videoId:"FM7MFYoylVs" },
-
-{ type:"MUSIC", title:"Señorita — Shawn Mendes, Camila Cabello", meta:"US/UK • 1B+", desc:"Official video.", videoId:"Pkh8UtuejGw" },
-{ type:"MUSIC", title:"Treat You Better — Shawn Mendes", meta:"US/UK • 2B+", desc:"Official video.", videoId:"lY2yjAdbvdQ" },
-
-{ type:"MUSIC", title:"One Kiss — Calvin Harris & Dua Lipa", meta:"US/UK • 1B+", desc:"Official video.", videoId:"DkeiKbqa02g" },
-{ type:"MUSIC", title:"This Is What You Came For (alt) — Calvin Harris ft. Rihanna", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"kOkQ4T5WO9E" },
-
-{ type:"MUSIC", title:"One Dance — Drake ft. Wizkid & Kyla", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"iAbnEUA0wpA" },
-{ type:"MUSIC", title:"Hotline Bling — Drake", meta:"US/UK • 2B+", desc:"Official video.", videoId:"uxpDa-c-4Mc" },
-
-{ type:"MUSIC", title:"Closer (alt upload) — The Chainsmokers ft. Halsey", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"PT2_F-1esPk" },
-{ type:"MUSIC", title:"Animals — Maroon 5", meta:"US/UK • 1B+", desc:"Official video.", videoId:"qpgTC9MDx1o" },
-{ type:"MUSIC", title:"Memories — Maroon 5", meta:"US/UK • 1B+", desc:"Official video.", videoId:"SlPhMPnQ58k" },
-{ type:"MUSIC", title:"Girls Like You (alt upload) — Maroon 5 ft. Cardi B", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"FJ7YqMMmttQ" },
-
-{ type:"MUSIC", title:"Hello (alt upload) — Adele", meta:"US/UK • 1B+", desc:"Official/Verified.", videoId:"YQHsXMglC9A" },
-{ type:"MUSIC", title:"Someone Like You — Adele", meta:"US/UK • 1B+", desc:"Official video.", videoId:"hLQl3WQQoQ0" },
-
-{ type:"MUSIC", title:"Happy — Pharrell Williams", meta:"US/UK • 1B+", desc:"Official video.", videoId:"ZbZSe6N_BXs" },
-{ type:"MUSIC", title:"All of Me — John Legend", meta:"US/UK • 2B+", desc:"Official video.", videoId:"450p7goxZqg" },
-
-{ type:"MUSIC", title:"Rude — MAGIC!", meta:"US/UK • 1B+", desc:"Official video.", videoId:"PIh2xe4jnpk" },
-{ type:"MUSIC", title:"Some Nights — fun.", meta:"US/UK • 1B+", desc:"Official video.", videoId:"qQkBeOisNM0" },
-
-{ type:"MUSIC", title:"Counting Stars (keep one only) — OneRepublic", meta:"US/UK • 1B+", desc:"(Nếu trùng thì xoá bớt)", videoId:"hT_nvWreIhg" },
-{ title:"Sóng Gió — Jack & K-ICM", videoId:"U6n2NcJ7rLc" },
-  { title:"Bạc Phận — Jack & K-ICM", videoId:"pA7w3gq1zGQ" },
-  { title:"Em Gì Ơi — Jack & K-ICM", videoId:"q-Tkz5c4a9A" },
-  { title:"Hồng Nhan — Jack", videoId:"7D7v3s1s7nA" },
-  { title:"Có Chắc Yêu Là Đây — Sơn Tùng M-TP", videoId:"6t-MjBazs3o" },
-  { title:"Chạy Ngay Đi — Sơn Tùng M-TP", videoId:"32sYGCOYJUM" },
-  { title:"Lạc Trôi — Sơn Tùng M-TP", videoId:"Llw9Q6akRo4" },
-  { title:"Em Của Ngày Hôm Qua — Sơn Tùng M-TP", videoId:"pLk9yYzF_xU" },
-  { title:"Nơi Này Có Anh — Sơn Tùng M-TP", videoId:"FN7ALfpGxiI" },
-  { title:"Hãy Trao Cho Anh — Sơn Tùng M-TP", videoId:"knW7-x7Y7RE" },
-
-  // VN demo:
-  { type:"MUSIC", title:"Sóng Gió — Jack & K-ICM", meta:"VN", desc:"Official MV.", videoId:"U6n2NcJ7rLc" },
-  { type:"MUSIC", title:"Có Chắc Yêu Là Đây — Sơn Tùng M-TP", meta:"VN", desc:"Official MV.", videoId:"6t-MjBazs3o" },
-  { type:"MUSIC", title:"Chạy Ngay Đi — Sơn Tùng M-TP", meta:"VN", desc:"Official MV.", videoId:"32sYGCOYJUM" },
-];
-
-/* ✅ Chuẩn hoá & lọc videoId rỗng */
-const YT = YT_SOURCE
-  .map(x => ({
-    type: x.type || "MUSIC",
-    title: x.title || "Untitled",
-    meta: x.meta || "YOUTUBE",
-    desc: x.desc || "",
-    videoId: x.videoId || ""
-  }))
-  .filter(x => x.videoId);
-
-/* ✅ MP3 LIST: nếu có window.MP3_LIST thì dùng, không thì demo */
-const MP3 = Array.isArray(window.MP3_LIST) ? window.MP3_LIST : [
-  // Ví dụ đúng chuẩn:
-  // { title:"Song A", meta:"MP3", src:"https://domain.com/a.mp3", lyricVI:"...", lyricEN:"..." }
-
-  { title:"Demo track (chưa có MP3 src)", meta:"MP3", src:"", lyricVI:"", lyricEN:"" },
-];
-
-/* ========= STATE ========= */
-let ytIndex = 0;
-let mp3Index = 0;
-let mp3Random = false;
-
-function ytEmbed(videoId){
-  return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
-}
-
-/* ========= YOUTUBE ========= */
-function filterYT(q){
-  const s = (q||"").trim().toLowerCase();
-  if(!s) return YT;
-  return YT.filter(x =>
-    (x.title||"").toLowerCase().includes(s) ||
-    (x.meta||"").toLowerCase().includes(s) ||
-    (x.desc||"").toLowerCase().includes(s)
-  );
-}
-
-function renderYT(list){
-  if(!ytListEl) return;
-
-  ytListEl.innerHTML = list.map((m) => {
-    const realIdx = YT.findIndex(x => x.videoId === m.videoId);
-    const active = (realIdx === ytIndex) ? "active" : "";
-    return `
-      <div class="track ${active}" data-yt="${realIdx}">
-        <div class="trackTop">
-          <div class="trackTitle">${escHtml(m.title)}</div>
-          <div class="trackMeta">${escHtml(m.meta || "YOUTUBE")}</div>
+    function renderPlaylist(){
+      playlistEl.innerHTML = MEDIA.map((m, idx)=>`
+        <div class="track" data-idx="${idx}">
+          <div class="trackTop">
+            <div class="trackTitle">${m.title}</div>
+            <div class="trackMeta">${m.meta}</div>
+          </div>
+          <p class="trackDesc">${m.desc}</p>
         </div>
-        ${m.desc ? `<p class="trackDesc">${escHtml(m.desc)}</p>` : ``}
-      </div>
-    `;
-  }).join("");
+      `).join("");
 
-  ytListEl.querySelectorAll("[data-yt]").forEach(el=>{
-    el.addEventListener("click", ()=>{
-      playYT(Number(el.getAttribute("data-yt")));
-    });
-  });
-}
-
-function playYT(i){
-  const item = YT[i];
-  if(!item || !ytPlayerEl) return;
-
-  ytIndex = i;
-  ytPlayerEl.src = ytEmbed(item.videoId);
-
-  ytListEl?.querySelectorAll(".track").forEach(t=>t.classList.remove("active"));
-  ytListEl?.querySelector(`[data-yt="${i}"]`)?.classList.add("active");
-}
-
-/* Search */
-if(ytSearchEl){
-  ytSearchEl.addEventListener("input", ()=>{
-    renderYT(filterYT(ytSearchEl.value));
-  });
-}
-
-/* ========= MP3 ========= */
-function filterMP3(q){
-  const s = (q||"").trim().toLowerCase();
-  if(!s) return MP3;
-  return MP3.filter(x =>
-    (x.title||"").toLowerCase().includes(s) ||
-    (x.meta||"").toLowerCase().includes(s)
-  );
-}
-
-function renderMP3(list){
-  if(!mp3ListEl) return;
-
-  mp3ListEl.innerHTML = list.map((s)=>{
-    const realIdx = MP3.findIndex(x =>
-      (x.title === s.title) && ((x.meta||"") === (s.meta||"")) && ((x.src||"") === (s.src||""))
-    );
-    const active = (realIdx === mp3Index) ? "active" : "";
-    return `
-      <div class="song ${active}" data-mp3="${realIdx}">
-        <b>${escHtml(s.title)}</b>
-        <div class="muted2" style="font-size:12px">${escHtml(s.meta || "")}</div>
-      </div>
-    `;
-  }).join("");
-
-  mp3ListEl.querySelectorAll("[data-mp3]").forEach(el=>{
-    el.addEventListener("click", ()=>{
-      playMP3(Number(el.getAttribute("data-mp3")));
-    });
-  });
-}
-
-function playMP3(i){
-  const song = MP3[i];
-  if(!song) return;
-
-  mp3Index = i;
-
-  // highlight
-  mp3ListEl?.querySelectorAll(".song").forEach(s=>s.classList.remove("active"));
-  mp3ListEl?.querySelector(`[data-mp3="${i}"]`)?.classList.add("active");
-
-  if(audioEl){
-    if(song.src){
-      audioEl.src = song.src;
-      audioEl.play?.().catch(()=>{});
-    }else{
-      audioEl.removeAttribute("src");
-      audioEl.load();
-      toast("MP3 chưa có link src (hãy thay src bằng file MP3 thật) ⚠️");
+      playlistEl.querySelectorAll(".track").forEach(el=>{
+        el.addEventListener("click", ()=>{
+          const idx = Number(el.getAttribute("data-idx"));
+          setActiveTrack(idx);
+          toast("Switched ✅");
+        });
+      });
     }
-  }
+    renderPlaylist();
 
-  if(lyricViEl) lyricViEl.textContent = song.lyricVI ? song.lyricVI : "(Chưa có lời VI)";
-  if(lyricEnEl) lyricEnEl.textContent = song.lyricEN ? song.lyricEN : "(Chưa có lời EN)";
-}
+    const defaultIdx = MEDIA.findIndex(x => (x.title || "").toLowerCase().includes("last christmas"));
+    setActiveTrack(defaultIdx >= 0 ? defaultIdx : 0);
 
-/* Search */
-if(mp3SearchEl){
-  mp3SearchEl.addEventListener("input", ()=>{
-    renderMP3(filterMP3(mp3SearchEl.value));
-  });
-}
+    const apState = document.getElementById("apState");
+    const lpState = document.getElementById("lpState");
 
-/* Buttons (global for onclick) */
-window.prevSong = function(){
-  if(MP3.length === 0) return;
+    document.getElementById("btnAutoplay").addEventListener("click", ()=>{
+      autoplay = !autoplay;
+      apState.textContent = autoplay ? "ON" : "OFF";
+      if(currentItem) ytPlayer.src = ytEmbedUrl(currentItem.videoId);
+      nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+      toast("Autoplay " + (autoplay ? "ON" : "OFF"));
+    });
 
-  if(mp3Random && MP3.length > 1){
-    let r = mp3Index;
-    while(r === mp3Index) r = Math.floor(Math.random() * MP3.length);
-    playMP3(r);
-    return;
-  }
-  playMP3((mp3Index - 1 + MP3.length) % MP3.length);
-};
+    document.getElementById("btnLoop").addEventListener("click", ()=>{
+      loop = !loop;
+      lpState.textContent = loop ? "ON" : "OFF";
+      if(currentItem) ytPlayer.src = ytEmbedUrl(currentItem.videoId);
+      nowModeEl.textContent = `MODE: Autoplay ${autoplay ? "ON" : "OFF"} • Loop ${loop ? "ON" : "OFF"}`;
+      toast("Loop " + (loop ? "ON" : "OFF"));
+    });
 
-window.nextSong = function(){
-  if(MP3.length === 0) return;
+    document.getElementById("btnCopyMedia").addEventListener("click", async ()=>{
+      if(!currentItem) return;
+      const url = `https://www.youtube.com/watch?v=${currentItem.videoId}`;
+      try{
+        await navigator.clipboard.writeText(url);
+        toast("Copied video link ✅");
+      }catch(e){
+        toast("Copy failed");
+      }
+    });
 
-  if(mp3Random && MP3.length > 1){
-    let r = mp3Index;
-    while(r === mp3Index) r = Math.floor(Math.random() * MP3.length);
-    playMP3(r);
-    return;
-  }
-  playMP3((mp3Index + 1) % MP3.length);
-};
+    document.getElementById("btnOpenYT").addEventListener("click", ()=>{
+      if(!currentItem) return;
+      window.open(`https://www.youtube.com/watch?v=${currentItem.videoId}`, "_blank", "noopener");
+    });
 
-window.toggleRandomMode = function(){
-  mp3Random = !mp3Random;
-  toast(mp3Random ? "MP3 Random: ON 🔀" : "MP3 Random: OFF");
-};
+    /********************
+     * 9) QR GENERATOR
+     ********************/
+    const qrBox = document.getElementById("qrBox");
+    const qrCaption = document.getElementById("qrCaption");
 
-/* Auto next when MP3 ended */
-if(audioEl){
-  audioEl.addEventListener("ended", ()=>{
-    window.nextSong();
-  });
-}
-
-/* ========= INIT ========= */
-renderYT(YT);
-renderMP3(MP3);
-if(YT.length) playYT(0);
-if(MP3.length) playMP3(0);
-</script>
-  
-<!-- ĐẢM BẢO có thư viện QRCode trước script chính -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<script>
-/********************
- * 9) ✅ QR GENERATOR — FIXED
- ********************/
-(function(){
-  const qrBox = document.getElementById("qrBox");
-  const qrCaption = document.getElementById("qrCaption");
-
-  const btnQR    = document.getElementById("btnQR");
-  const btnQRUrl = document.getElementById("btnQRUrl");
-  const btnQRVCF = document.getElementById("btnQRVCF");
-  const qrTextEl = document.getElementById("qrText");
-
-  const qrSiteBox = document.getElementById("qrSiteBox");
-  const qrFbBox   = document.getElementById("qrFbBox");
-  const qrZaloBox = document.getElementById("qrZaloBox");
-  const qrSiteText= document.getElementById("qrSiteText");
-
-  // Nếu anh chưa có CONTACT thì set fallback tránh lỗi
-  const CONTACT_SAFE = (typeof CONTACT === "object" && CONTACT) ? CONTACT : {
-    email: "your@email.com",
-    facebook: "https://facebook.com/",
-    zalo: "https://zalo.me/"
-  };
-
-  function safeToast(msg){
-    if(typeof toast === "function") toast(msg);
-    else console.log("[toast]", msg);
-  }
-
-  function makeQR(targetEl, text){
-    if(!targetEl) return;
-    if(typeof QRCode === "undefined"){
-      safeToast("Thiếu thư viện QRCode (qrcode.min.js) ⚠️");
-      return;
-    }
-    const value = String(text || "").trim();
-    if(!value){
-      safeToast("Nội dung QR rỗng ⚠️");
-      return;
+    function makeQR(targetEl, text){
+      targetEl.innerHTML = "";
+      new QRCode(targetEl, {
+        text,
+        width: 220,
+        height: 220,
+        colorDark : "#111111",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
     }
 
-    // clear old qr
-    targetEl.innerHTML = "";
+    function makeMainQR(text){
+      makeQR(qrBox, text);
+      qrCaption.textContent = "QR: " + text;
+      toast("QR created ✅");
+    }
 
-    new QRCode(targetEl, {
-      text: value,
-      width: 220,
-      height: 220,
-      colorDark : "#111111",
-      colorLight : "#ffffff",
-      correctLevel : QRCode.CorrectLevel.H
-    });
-  }
-
-  function makeMainQR(text){
-    if(!qrBox) { safeToast("Không tìm thấy #qrBox ⚠️"); return; }
-    makeQR(qrBox, text);
-    if(qrCaption) qrCaption.textContent = "QR: " + String(text || "");
-    safeToast("QR created ✅");
-  }
-
-  // Buttons
-  if(btnQR){
-    btnQR.addEventListener("click", ()=>{
-      const text = (qrTextEl?.value || "").trim();
-      if(!text){ safeToast("Nhập nội dung để tạo QR"); return; }
+    document.getElementById("btnQR").addEventListener("click", ()=>{
+      const text = (document.getElementById("qrText").value || "").trim();
+      if(!text){ toast("Nhập nội dung để tạo QR"); return; }
       makeMainQR(text);
     });
-  }
 
-  if(btnQRUrl){
-    btnQRUrl.addEventListener("click", ()=>{
+    document.getElementById("btnQRUrl").addEventListener("click", ()=>{
       const url = location.href.split("#")[0];
       makeMainQR(url);
     });
-  }
 
-  if(btnQRVCF){
-    btnQRVCF.addEventListener("click", ()=>{
-      const siteUrl = location.href.split("#")[0];
+    document.getElementById("btnQRVCF").addEventListener("click", ()=>{
       const vcf =
 `BEGIN:VCARD
 VERSION:3.0
 FN:Tran Quoc Trung
-EMAIL:${CONTACT_SAFE.email}
-URL:${siteUrl}
-X-SOCIALPROFILE;type=facebook:${CONTACT_SAFE.facebook}
+EMAIL:${CONTACT.email}
+URL:${location.href.split("#")[0]}
+X-SOCIALPROFILE;type=facebook:${CONTACT.facebook}
 NOTE:Veterinary • AI • App Builder
 END:VCARD`;
       makeMainQR(vcf);
     });
-  }
 
-  // Auto QR boxes
-  const siteUrl = location.href.split("#")[0];
-  if(qrSiteText) qrSiteText.textContent = siteUrl;
+    const siteUrl = location.href.split("#")[0];
+    document.getElementById("qrSiteText").textContent = siteUrl;
 
-  makeQR(qrSiteBox, siteUrl);
-  makeQR(qrFbBox, CONTACT_SAFE.facebook);
-  makeQR(qrZaloBox, CONTACT_SAFE.zalo);
+    makeQR(document.getElementById("qrSiteBox"), siteUrl);
+    makeQR(document.getElementById("qrFbBox"), CONTACT.facebook);
+    makeQR(document.getElementById("qrZaloBox"), CONTACT.zalo);
 
-})();
-</script>
+    /********************
+     * 10) PRINT CV
+     ********************/
+    document.getElementById("btnPrint").addEventListener("click", ()=>{
+      window.open("CV_Trung.pdf", "_blank", "noopener");
+      toast("Opened CV ✅");
+    });
 
+    /********************
+     * 11) SEND MAIL (mailto)
+     ********************/
+    document.getElementById("btnMail").addEventListener("click", ()=>{
+      const name = (document.getElementById("name").value || "").trim();
+      const subject = (document.getElementById("subject").value || "").trim();
+      const message = (document.getElementById("message").value || "").trim();
+
+      const sub = encodeURIComponent(subject ? `[Portfolio] ${subject}` : "[Portfolio] Message");
+      const body = encodeURIComponent(
+        `Name: ${name}\n\nMessage:\n${message}\n\n---\nSent from portfolio page`
+      );
+      window.location.href = `mailto:${CONTACT.email}?subject=${sub}&body=${body}`;
+    });
+
+    /********************
+     * 12) NAV SPY + BACK TO TOP
+     ********************/
+    const topBtn = document.getElementById("topBtn");
+    topBtn.addEventListener("click", ()=> window.scrollTo({top:0, behavior:"smooth"}));
+
+    const links = Array.from(document.querySelectorAll(".navLinks a[data-spy]"));
+    const sections = links.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+
+    function onScroll(){
+      const y = window.scrollY || document.documentElement.scrollTop;
+      topBtn.classList.toggle("show", y > 600);
+
+      let idx = 0;
+      for(let i=0;i<sections.length;i++){
+        const s = sections[i];
+        const top = s.offsetTop - 120;
+        if(y >= top) idx = i;
+      }
+      links.forEach(a=>a.classList.remove("active"));
+      if(links[idx]) links[idx].classList.add("active");
+    }
+    window.addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
+
+    /********************
+     * 13) SKILL BARS animate when visible
+     ********************/
+    const barEls = document.querySelectorAll(".bar");
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const pct = e.target.getAttribute("data-pct");
+          const fill = e.target.querySelector(".fill");
+          fill.style.width = pct + "%";
+        }
+      });
+    }, {threshold: 0.25});
+    barEls.forEach(b=>io.observe(b));
+  </script>
+</body>
+</html>
