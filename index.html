@@ -1824,8 +1824,17 @@ const lyricsBox  = document.getElementById("lyricsBox");
 const lyricViEl  = lyricsBox ? lyricsBox.querySelector(".lyric-vi") : null;
 const lyricEnEl  = lyricsBox ? lyricsBox.querySelector(".lyric-en") : null;
 
-// ✅ Dùng MEDIA của anh cho YouTube (nếu item không có type/meta/desc thì set mặc định)
-const YT = (Array.isArray(MEDIA) ? MEDIA : []).map(x => ({
+// ✅ YOUTUBE DATA: nếu chưa có MEDIA thì dùng mảng rỗng (không crash)
+const YT_SRC = (typeof window.MEDIA !== "undefined" && Array.isArray(window.MEDIA)) ? window.MEDIA : [];
+
+const YT = YT_SRC.map(x => ({
+  type: x.type || "MUSIC",
+  title: x.title || "Untitled",
+  meta: x.meta || "YOUTUBE",
+  desc: x.desc || "",
+  videoId: x.videoId || ""
+})).filter(x => x.videoId);
+
   type: x.type || "MUSIC",
   title: x.title || "Untitled",
   meta: x.meta || "YOUTUBE",
@@ -2044,7 +2053,54 @@ function renderMP3(list){
   if(!mp3ListEl) return;
   mp3ListEl.innerHTML = list.map((s, idx)=>`
     <div class="song" data-mp3="${idx}">
-      <b>${s.title}</b><div class="muted2" style="font-size:12px">${s.artist || ""}</div>
+      <b>${s.title}</b>function renderMP3(list){
+  if(!mp3ListEl) return;
+  mp3ListEl.innerHTML = list.map((s, idx)=>`
+    <div class="song" data-mp3="${idx}">
+      <b>${s.title}</b>
+      <div class="muted2" style="font-size:12px">${s.meta || s.artist || ""}</div>
+    </div>
+  `).join("");
+
+  mp3ListEl.querySelectorAll("[data-mp3]").forEach(el=>{
+    el.addEventListener("click", ()=>{
+      const i = Number(el.getAttribute("data-mp3"));
+      playMP3(i);
+    });
+  });
+}
+
+function filterMP3(q){
+  const s = (q||"").trim().toLowerCase();
+  if(!s) return MP3;
+  return MP3.filter(x =>
+    (x.title||"").toLowerCase().includes(s) ||
+    (x.meta||"").toLowerCase().includes(s) ||
+    (x.artist||"").toLowerCase().includes(s)
+  );
+}
+
+if(mp3SearchEl){
+  mp3SearchEl.addEventListener("input", ()=>{
+    const list = filterMP3(mp3SearchEl.value);
+
+    // render list lọc nhưng play theo index thật trong MP3 (dùng videoId nếu có)
+    mp3ListEl.innerHTML = list.map((s)=> {
+      const realIdx = MP3.findIndex(x => (x.videoId && x.videoId === s.videoId) || (x.title === s.title && (x.meta||"") === (s.meta||"")));
+      return `
+        <div class="song" data-mp3="${realIdx}">
+          <b>${s.title}</b>
+          <div class="muted2" style="font-size:12px">${s.meta || s.artist || ""}</div>
+        </div>
+      `;
+    }).join("");
+
+    mp3ListEl.querySelectorAll("[data-mp3]").forEach(el=>{
+      el.addEventListener("click", ()=> playMP3(Number(el.getAttribute("data-mp3"))));
+    });
+  });
+}
+
     </div>
   `).join("");
 
@@ -2149,7 +2205,11 @@ if(mp3SearchEl){
       const realIdx = MP3.findIndex(x=>x.title===s.title && x.artist===s.artist);
       return `
         <div class="song" data-mp3="${realIdx}">
-          <b>${s.title}</b><div class="muted2" style="font-size:12px">${s.artist || ""}</div>
+          <b>${s.title}</b>const realIdx = MP3.findIndex(x =>
+  (x.videoId && s.videoId && x.videoId === s.videoId) ||
+  (x.title === s.title && (x.meta || "") === (s.meta || ""))
+);
+
         </div>
       `;
     }).join("");
