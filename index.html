@@ -1163,16 +1163,17 @@
 
     <!-- LEFT: YOUTUBE -->
     <div class="media-left card pad">
-      <iframe
-        id="ytPlayer"
-        width="100%"
-        height="315"
-        src="https://www.youtube.com/embed/E8gmARGvPlI"
-        title="YouTube player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
+ 
+          <iframe
+  id="ytPlayer"
+  width="100%"
+  height="315"
+  src="https://www.youtube.com/embed/E8gmARGvPlI"
+  title="YouTube player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
 
       <div id="playlist" class="yt-playlist"></div>
     </div>
@@ -1184,7 +1185,7 @@
           <input id="searchSong" placeholder="🔍 Tìm bài hát..." />
           <div class="mp-controls">
             <button onclick="prevSong()">⏮</button>
-            <button onclick="toggleRandom()">🔀</button>
+            <<button onclick="toggleRandomMode()">🔀</button>
             <button onclick="nextSong()">⏭</button>
           </div>
         </div>
@@ -1205,27 +1206,27 @@
 <!-- ===== END MEDIA ===== -->
 
     <!-- YOUTUBE VIDEO -->
-<iframe
-  id="ytPlayer"
-  width="100%"
-  height="315"
-  src="https://www.youtube.com/embed/E8gmARGvPlI"
-  title="YouTube player"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen
-></iframe>
-
-<!-- YOUTUBE PLAYLIST -->
-<div id="playlist" style="
-  margin-top:12px;
-  max-height:260px;
-  overflow-y:auto;
-  background:#111;
-  border-radius:12px;
-  padding:8px;
-"></div>
+ 
 <section id="qr">
+  <div class="media-left card pad">
+
+  <!-- ✅ YOUTUBE PLAYER -->
+  <iframe
+    id="ytPlayer"
+    width="100%"
+    height="315"
+    src="https://www.youtube.com/embed/E8gmARGvPlI"
+    title="YouTube player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+
+  <!-- ✅ YOUTUBE PLAYLIST -->
+  <div id="playlist" class="yt-playlist"></div>
+
+</div>
+
     <!-- QR -->
     <section id="qr">
       <div class="titleRow">
